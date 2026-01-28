@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { IMAGES } from '../../constants';
+import { IMAGES, VIDEOS } from '../../constants';
 import { PageType } from '../../types';
 import { Camera, Zap, Target, Activity, Trophy, MapPin, ArrowRight } from 'lucide-react';
 
@@ -165,20 +165,56 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-             <div className="aspect-[4/5] overflow-hidden rounded-sm border border-[#e5e5e5]">
-                <img src={IMAGES.groupIntensity} alt="Intensity" className="w-full h-full object-cover" loading="lazy" />
-             </div>
-             <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
-                <img src={IMAGES.technicalGroup} alt="Technique" className="w-full h-full object-cover" loading="lazy" />
-             </div>
-             <div className="aspect-[4/5] overflow-hidden rounded-sm border border-[#e5e5e5]">
-                <img src={IMAGES.fightAction} alt="Action" className="w-full h-full object-cover" loading="lazy" />
-             </div>
-             <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
-                <img src={IMAGES.gymClassProof} alt="The Gym" className="w-full h-full object-cover" loading="lazy" />
-             </div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="aspect-[4/5] overflow-hidden rounded-sm border border-[#e5e5e5]">
+              <video
+                src={VIDEOS.vid1}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
+              <video
+                src={VIDEOS.vid2}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="aspect-[4/5] overflow-hidden rounded-sm border border-[#e5e5e5]">
+              <video
+                src={VIDEOS.vid4}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
+              <video
+                src={VIDEOS.vid5}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
+
           
           <div className="mt-16 text-center">
              <h3 className="text-3xl font-oswald uppercase text-[#0a0a0a] mb-8">Ready to Train with SBA?</h3>

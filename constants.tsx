@@ -28,8 +28,16 @@ export const IMAGES = {
   venueWide: '/images/sba/venue-wide.jpeg',
   coachHero: '/images/sba/coach-hero.jpeg',
   coachHero2: '/images/sba/coach-hero2.jpeg',
-  coachDetail: '/images/sba/coach-detail.jpeg'
+  coachDetail: '/images/sba/coach-detail.jpeg',
 };
+
+export const VIDEOS = {
+  vid1: '/images/sba/Vid1.mp4',
+  vid2: '/images/sba/Vid2.mp4',
+  vid4: '/images/sba/Vid4.mp4',
+  vid5: '/images/sba/Vid5.mp4',
+};
+
 
 export const CAMP_DATA = {
   location: 'Hamburg, Germany',
