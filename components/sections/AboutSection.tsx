@@ -9,14 +9,14 @@ const AboutSection: React.FC = () => {
       <section className="py-20 max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-24 items-center">
           {/* Secondary Image Left: coachDetail (wrapping) */}
-          <div className="md:col-span-3 space-y-6">
+          {/* <div className="md:col-span-3 space-y-6">
             <img 
               src={IMAGES.coachDetail} 
               alt="Preparation and discipline — hand wrapping before training" 
               className="rounded-lg shadow-lg grayscale hover:grayscale-0 transition-all duration-700 w-full aspect-[3/4] object-cover border border-[#e5e5e5]"
               loading="lazy"
             />
-          </div>
+          </div> */}
           
           {/* Primary Image Center: coachHero */}
           <div className="md:col-span-6 relative group">
@@ -36,7 +36,7 @@ const AboutSection: React.FC = () => {
           {/* Secondary Image Right: fightAction */}
           <div className="md:col-span-3">
              <img 
-              src={IMAGES.fightAction} 
+              src={IMAGES.coachHero2} 
               alt="In-ring boxing action — timing, distance, and execution" 
               className="rounded-lg shadow-lg grayscale hover:grayscale-0 transition-all duration-700 w-full aspect-[3/4] object-cover border border-[#e5e5e5]"
               loading="lazy"

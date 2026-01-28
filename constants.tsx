@@ -20,10 +20,14 @@ export const COLORS = {
 export const IMAGES = {
   gymClassProof: '/images/sba/gym-class-proof.jpeg',
   fightAction: '/images/sba/fight-action.jpeg',
+  fightAction2: '/images/sba/fight-action2.jpeg',
+  fightAction3: '/images/sba/fight-action3.jpeg',
+  fightAction7: '/images/sba/fight-action7.jpeg',
   groupIntensity: '/images/sba/group-intensity.jpeg',
   technicalGroup: '/images/sba/technical-group.jpeg',
   venueWide: '/images/sba/venue-wide.jpeg',
   coachHero: '/images/sba/coach-hero.jpeg',
+  coachHero2: '/images/sba/coach-hero2.jpeg',
   coachDetail: '/images/sba/coach-detail.jpeg'
 };
 

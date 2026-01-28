@@ -23,7 +23,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
         {/* Primary Impact Image - Boxing proof */}
         <div className="w-full h-[50vh] md:h-[70vh] mb-16 overflow-hidden rounded-sm shadow-2xl border border-[#e5e5e5]">
           <img 
-            src={IMAGES.gymClassProof} 
+            src={IMAGES.fightAction} 
             alt="SBA Boxing Community" 
             className="w-full h-full object-cover"
           />
@@ -48,13 +48,13 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <img 
-                  src={IMAGES.groupIntensity} 
+                  src={IMAGES.fightAction3} 
                   alt="High Intensity Conditioning" 
                   className="w-full h-64 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
                   loading="lazy"
                 />
                 <img 
-                  src={IMAGES.technicalGroup} 
+                  src={IMAGES.groupIntensity} 
                   alt="Technical Instruction" 
                   className="w-full h-48 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
                   loading="lazy"
@@ -62,7 +62,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               </div>
               <div className="space-y-4">
                  <img 
-                  src={IMAGES.fightAction} 
+                  src={IMAGES.fightAction2} 
                   alt="Ring Credibility" 
                   className="w-full h-48 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
                   loading="lazy"
@@ -119,7 +119,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
         <div className="grid md:grid-cols-3 gap-8">
           {[
             { lvl: "Beginners", img: IMAGES.technicalGroup, desc: "Learn proper boxing fundamentals, padwork, and conditioning in a structured environment." },
-            { lvl: "Amateurs", img: IMAGES.groupIntensity, desc: "Sharpen technique, endurance, and consistency through focused group sessions." },
+            { lvl: "Amateurs", img: IMAGES.fightAction7, desc: "Sharpen technique, endurance, and consistency through focused group sessions." },
             { lvl: "Professionals", img: IMAGES.fightAction, desc: "Maintain sharpness, intensity, and conditioning with high-level padwork." }
           ].map((card, idx) => (
             <div key={idx} className="relative group overflow-hidden rounded-sm border border-[#e5e5e5] shadow-lg">
@@ -189,42 +189,6 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
                 Apply for Boxing Camp
              </button>
           </div>
-        </div>
-      </section>
-
-      {/* Asset Validation Debug Panel (Temporary - To be removed after verification) */}
-      <section className="bg-red-50 border-y-2 border-red-500 p-8 my-20 max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-           <h3 className="text-2xl font-bold text-red-600 uppercase tracking-tighter">Asset Validation Debug Panel</h3>
-           <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold uppercase">Dev Only</span>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {Object.entries(IMAGES).map(([key, url]) => (
-            <div key={key} className="space-y-3 p-4 bg-white border border-red-200 shadow-sm rounded-lg">
-              <div className="flex justify-between items-center">
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{key}</p>
-                <div className="w-2 h-2 rounded-full bg-green-500" id={`status-${key}`}></div>
-              </div>
-              <p className="text-[9px] font-mono break-all text-gray-500 bg-gray-50 p-2 rounded">{url}</p>
-              <div className="relative aspect-video bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 rounded">
-                <img 
-                  src={url} 
-                  alt={key}
-                  className="w-full h-full object-cover"
-                  onLoad={() => {
-                    const status = document.getElementById(`status-${key}`);
-                    if (status) status.classList.replace('bg-green-500', 'bg-emerald-500');
-                  }}
-                  onError={(e) => {
-                    console.error(`CRITICAL: Asset Load Failure - ${key} @ ${url}`);
-                    const status = document.getElementById(`status-${key}`);
-                    if (status) status.classList.replace('bg-green-500', 'bg-red-500');
-                    (e.target as HTMLImageElement).style.opacity = '0.1';
-                  }}
-                />
-              </div>
-            </div>
-          ))}
         </div>
       </section>
     </div>

@@ -36,8 +36,8 @@ const ContactSection: React.FC = () => {
 
           <div className="grid gap-6 mb-16">
             {[
-              { icon: <Phone className="w-6 h-6" />, label: 'Phone / WhatsApp', value: '+49 1XX XXX XXXX' },
-              { icon: <Mail className="w-6 h-6" />, label: 'Email Inquiry', value: 'info@silvaboxingacademy.com' },
+              { icon: <Phone className="w-6 h-6" />, label: 'Phone / WhatsApp', value: '+49 152 0421 9720' },
+              { icon: <Mail className="w-6 h-6" />, label: 'Email Inquiry', value: 'silvaboxingacademy@gmail.com' },
               { icon: <MapPin className="w-6 h-6" />, label: 'Location', value: CAMP_DATA.location, sub: 'Exact address provided after inquiry' }
             ].map((item, idx) => (
               <div key={idx} className="flex items-center space-x-6 p-6 bg-[#111111] border border-[#222222] rounded-sm hover:border-[#b91c1c] transition-colors group">
