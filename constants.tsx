@@ -29,6 +29,7 @@ export const IMAGES = {
   coachHero: '/images/sba/coach-hero.jpeg',
   coachHero2: '/images/sba/coach-hero2.jpeg',
   coachDetail: '/images/sba/coach-detail.jpeg',
+  coachDetail2: '/images/sba/coach-detail2.jpeg'
 };
 
 export const VIDEOS = {

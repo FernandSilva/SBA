@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { IMAGES, VIDEOS } from '../../constants';
 import { PageType } from '../../types';
 import { Camera, Zap, Target, Activity, Trophy, MapPin, ArrowRight } from 'lucide-react';
@@ -9,6 +8,67 @@ interface HomeSectionProps {
 }
 
 const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
+  // --- Mobile video slider logic (does not affect desktop grid) ---
+  const videoItems = useMemo(
+    () => [
+      { key: 'vid1', src: VIDEOS.vid1, label: 'Intensity' },
+      { key: 'vid2', src: VIDEOS.vid2, label: 'Technique' },
+      { key: 'vid4', src: VIDEOS.vid4, label: 'Action' },
+      { key: 'vid5', src: VIDEOS.vid5, label: 'The Gym' }
+    ],
+    []
+  );
+
+  const mobileTrackRef = useRef<HTMLDivElement | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Detect which slide is visible (mobile slider only)
+  useEffect(() => {
+    const track = mobileTrackRef.current;
+    if (!track) return;
+
+    const slides = Array.from(track.querySelectorAll('[data-slide]'));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
+
+        if (!visible) return;
+
+        const idx = Number((visible.target as HTMLElement).dataset.index);
+        if (!Number.isNaN(idx)) setActiveIndex(idx);
+      },
+      {
+        root: track,
+        threshold: [0.55, 0.7, 0.85]
+      }
+    );
+
+    slides.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  // Only play the active video on mobile; pause others
+  useEffect(() => {
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+
+      if (i === activeIndex) {
+        v.muted = true; // required for autoplay on mobile
+        const p = v.play();
+        if (p) p.catch(() => {});
+      } else {
+        v.pause();
+        try {
+          v.currentTime = 0;
+        } catch {}
+      }
+    });
+  }, [activeIndex]);
+
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 bg-white">
       
@@ -120,7 +180,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
           {[
             { lvl: "Beginners", img: IMAGES.technicalGroup, desc: "Learn proper boxing fundamentals, padwork, and conditioning in a structured environment." },
             { lvl: "Amateurs", img: IMAGES.fightAction7, desc: "Sharpen technique, endurance, and consistency through focused group sessions." },
-            { lvl: "Professionals", img: IMAGES.fightAction, desc: "Maintain sharpness, intensity, and conditioning with high-level padwork." }
+            { lvl: "Professionals", img: IMAGES.coachDetail2, desc: "Maintain sharpness, intensity, and conditioning with high-level padwork." }
           ].map((card, idx) => (
             <div key={idx} className="relative group overflow-hidden rounded-sm border border-[#e5e5e5] shadow-lg">
               <div className="aspect-[3/4] overflow-hidden">
@@ -165,7 +225,69 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
             </p>
           </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* MOBILE: 1 video per screen, swipe left/right */}
+          <div className="md:hidden">
+            <div className="mb-4 flex items-center justify-between">
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">
+                Video Gallery
+              </p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">
+                {activeIndex + 1}/{videoItems.length}
+              </p>
+            </div>
+
+            <div
+              ref={mobileTrackRef}
+              className="flex overflow-x-auto snap-x snap-mandatory gap-4 scrollbar-hide pb-2"
+              style={{ WebkitOverflowScrolling: 'touch' }}
+            >
+              {videoItems.map((item, idx) => (
+                <div
+                  key={item.key}
+                  data-slide
+                  data-index={idx}
+                  className="snap-center flex-shrink-0 w-[92vw] max-w-[520px]"
+                >
+                  <div className="aspect-[9/16] overflow-hidden rounded-sm border border-[#e5e5e5] bg-black shadow-lg">
+                    <video
+                      ref={(el) => (videoRefs.current[idx] = el)}
+                      src={item.src}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between">
+                    <p className="text-xs font-oswald uppercase tracking-widest text-[#0a0a0a]">
+                      {item.label}
+                    </p>
+
+                    <button
+                      onClick={() => {
+                        const v = videoRefs.current[idx];
+                        if (!v) return;
+                        if (v.paused) v.play().catch(() => {});
+                        else v.pause();
+                      }}
+                      className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#b91c1c]"
+                    >
+                      Play / Pause
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-4 text-[11px] text-gray-500">
+              Swipe left/right to view videos.
+            </p>
+          </div>
+
+          {/* DESKTOP/TABLET: original 4-up grid */}
+          <div className="hidden md:grid grid-cols-4 gap-4">
             <div className="aspect-[4/5] overflow-hidden rounded-sm border border-[#e5e5e5]">
               <video
                 src={VIDEOS.vid1}
@@ -178,7 +300,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               />
             </div>
 
-            <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
+            <div className="aspect-[4/5] overflow-hidden rounded-sm mt-12 border border-[#e5e5e5]">
               <video
                 src={VIDEOS.vid2}
                 autoPlay
@@ -202,7 +324,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               />
             </div>
 
-            <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
+            <div className="aspect-[4/5] overflow-hidden rounded-sm mt-12 border border-[#e5e5e5]">
               <video
                 src={VIDEOS.vid5}
                 autoPlay
@@ -215,7 +337,6 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
             </div>
           </div>
 
-          
           <div className="mt-16 text-center">
              <h3 className="text-3xl font-oswald uppercase text-[#0a0a0a] mb-8">Ready to Train with SBA?</h3>
              <button 
