@@ -1,0 +1,234 @@
+
+import React from 'react';
+import { IMAGES } from '../../constants';
+import { PageType } from '../../types';
+import { Camera, Zap, Target, Activity, Trophy, MapPin, ArrowRight } from 'lucide-react';
+
+interface HomeSectionProps {
+  setActivePage: (page: PageType) => void;
+}
+
+const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 bg-white">
+      
+      {/* Section 1: A Boxing Club Built for Community and Personal Growth */}
+      <section className="pt-2 pb-24 max-w-7xl mx-auto px-4">
+        <div className="mb-12 max-w-4xl">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-oswald uppercase mb-8 text-[#0a0a0a] leading-tight text-left">
+            A Boxing Club Built for <span className="text-[#b91c1c]">Community and Personal Growth</span>
+          </h2>
+        </div>
+          
+        {/* Primary Impact Image - Boxing proof */}
+        <div className="w-full h-[50vh] md:h-[70vh] mb-16 overflow-hidden rounded-sm shadow-2xl border border-[#e5e5e5]">
+          <img 
+            src={IMAGES.gymClassProof} 
+            alt="SBA Boxing Community" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6 text-gray-600 leading-relaxed text-lg text-left">
+              <h3 className="text-2xl font-oswald uppercase text-[#0a0a0a]">A Boxing Club Built on Structure and Intensity</h3>
+              <p>
+                Silva Boxing Academy is a boxing club delivering high-intensity group training through structured three-week programs. Each session is designed to build boxing skill, conditioning, and confidence through a combination of padwork, cardio, strength training, and technical drills.
+              </p>
+              <p>
+                Training is suitable for complete beginners, experienced amateurs, and professional fighters, with coaching adapted to different levels within the same group environment.
+              </p>
+              <p className="font-bold text-[#0a0a0a] border-l-4 border-[#b91c1c] pl-6 py-4 bg-[#f9fafb] italic">
+                SBA is not a drop-in fitness class. It is a boxing academy focused on real progression, discipline, and performance.
+              </p>
+            </div>
+            
+            {/* Imagery Proof Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <img 
+                  src={IMAGES.groupIntensity} 
+                  alt="High Intensity Conditioning" 
+                  className="w-full h-64 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
+                  loading="lazy"
+                />
+                <img 
+                  src={IMAGES.technicalGroup} 
+                  alt="Technical Instruction" 
+                  className="w-full h-48 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
+                  loading="lazy"
+                />
+              </div>
+              <div className="space-y-4">
+                 <img 
+                  src={IMAGES.fightAction} 
+                  alt="Ring Credibility" 
+                  className="w-full h-48 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
+                  loading="lazy"
+                />
+                <img 
+                  src={IMAGES.venueWide} 
+                  alt="SBA Venue Proof" 
+                  className="w-full h-64 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2: How Training Works */}
+      <section className="py-24 bg-[#f9fafb] border-y border-[#e5e5e5]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="mb-16 text-left">
+            <h2 className="text-4xl md:text-5xl font-oswald uppercase text-[#0a0a0a] mb-4">How Training <span className="text-[#b91c1c]">Works</span></h2>
+            <p className="text-gray-500 max-w-2xl">A systematic approach to boxing. We don't just workout; we build skills through repetition and intensity.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 text-left">
+            {[
+              { title: "Three-week training programs", icon: <Target className="w-8 h-8" />, desc: "Structured blocks designed for measurable skill and fitness progression." },
+              { title: "One-hour high-intensity group sessions", icon: <Zap className="w-8 h-8" />, desc: "High-intensity group sessions balancing technique, conditioning, and recovery." },
+              { title: "Focus on boxing fundamentals and padwork", icon: <Activity className="w-8 h-8" />, desc: "Precision combinations and real-ring application coached in every session." },
+              { title: "Cardio and strength built into every session", icon: <Trophy className="w-8 h-8" />, desc: "Functional conditioning built into boxing rounds for peak performance." },
+              { title: "Group energy with individual coaching cues", icon: <Zap className="w-8 h-8" />, desc: "Group energy with specific coaching cues tailored to your skill level." },
+              { title: "Rotating venues selected for optimal training conditions", icon: <MapPin className="w-8 h-8" />, desc: "Training environments selected for optimal focus and performance results." }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white p-8 border border-[#e5e5e5] hover:border-[#b91c1c] transition-all group shadow-sm">
+                <div className="text-[#b91c1c] mb-6 transition-transform">{item.icon}</div>
+                <h4 className="text-xl font-oswald uppercase text-[#0a0a0a] mb-3 tracking-widest">{item.title}</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 flex justify-start">
+             <button onClick={() => setActivePage('SCHEDULE')} className="flex items-center space-x-2 text-[#0a0a0a] hover:text-[#b91c1c] transition-colors font-oswald uppercase tracking-widest text-sm font-bold">
+                <span>View Full Schedule Breakdown</span>
+                <ArrowRight className="w-4 h-4" />
+             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3: Built for Every Level */}
+      <section className="py-24 max-w-7xl mx-auto px-4">
+        <h2 className="text-4xl md:text-5xl font-oswald uppercase text-[#0a0a0a] mb-16 text-center">Built for <span className="text-[#b91c1c]">Every Level</span></h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { lvl: "Beginners", img: IMAGES.technicalGroup, desc: "Learn proper boxing fundamentals, padwork, and conditioning in a structured environment." },
+            { lvl: "Amateurs", img: IMAGES.groupIntensity, desc: "Sharpen technique, endurance, and consistency through focused group sessions." },
+            { lvl: "Professionals", img: IMAGES.fightAction, desc: "Maintain sharpness, intensity, and conditioning with high-level padwork." }
+          ].map((card, idx) => (
+            <div key={idx} className="relative group overflow-hidden rounded-sm border border-[#e5e5e5] shadow-lg">
+              <div className="aspect-[3/4] overflow-hidden">
+                <img src={card.img} alt={card.lvl} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent p-8 flex flex-col justify-end text-left text-white">
+                <h4 className="text-3xl font-oswald uppercase mb-4">{card.lvl}</h4>
+                <p className="text-gray-300 text-sm leading-relaxed">{card.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Section 4: Rotating Venues. Consistent Standards. */}
+      <section className="relative py-40 overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-fixed bg-center"
+          style={{ backgroundImage: `url(${IMAGES.venueWide})` }}
+        />
+        <div className="absolute inset-0 bg-black/80" />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+           <h2 className="text-4xl md:text-6xl font-oswald uppercase text-white mb-8">Rotating Venues. <br/><span className="text-[#b91c1c]">Consistent Standards.</span></h2>
+           <p className="text-gray-300 text-lg md:text-xl leading-relaxed font-light mb-12">
+            SBA operates across a selection of training venues, rotating locations based on the season and the specific demands of each training block. This allows us to deliver the best possible environment for conditioning, padwork, and group sessions throughout the year.
+           </p>
+           <p className="text-[#b91c1c] font-oswald uppercase tracking-[0.3em] font-bold text-sm">Wherever we train, the standard remains the same.</p>
+        </div>
+      </section>
+
+      {/* Section 5: Action Gallery */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="mb-16 flex flex-col items-center text-center">
+            <div className="inline-flex items-center space-x-2 text-[#b91c1c] mb-2">
+              <Camera className="w-5 h-5" />
+              <span className="uppercase tracking-[0.2em] font-bold text-xs">The Academy in Motion</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-oswald uppercase text-[#0a0a0a] mb-4">Action <span className="text-[#b91c1c]">Gallery</span></h2>
+            <p className="text-gray-500 max-w-md mx-auto">
+              Real boxing. Real training. Real progress. Every Thursday in Hamburg.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+             <div className="aspect-[4/5] overflow-hidden rounded-sm border border-[#e5e5e5]">
+                <img src={IMAGES.groupIntensity} alt="Intensity" className="w-full h-full object-cover" loading="lazy" />
+             </div>
+             <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
+                <img src={IMAGES.technicalGroup} alt="Technique" className="w-full h-full object-cover" loading="lazy" />
+             </div>
+             <div className="aspect-[4/5] overflow-hidden rounded-sm border border-[#e5e5e5]">
+                <img src={IMAGES.fightAction} alt="Action" className="w-full h-full object-cover" loading="lazy" />
+             </div>
+             <div className="aspect-[4/5] overflow-hidden rounded-sm md:mt-12 border border-[#e5e5e5]">
+                <img src={IMAGES.gymClassProof} alt="The Gym" className="w-full h-full object-cover" loading="lazy" />
+             </div>
+          </div>
+          
+          <div className="mt-16 text-center">
+             <h3 className="text-3xl font-oswald uppercase text-[#0a0a0a] mb-8">Ready to Train with SBA?</h3>
+             <button 
+                onClick={() => setActivePage('CONTACT')}
+                className="bg-[#b91c1c] hover:bg-[#991b1b] text-white px-12 py-5 font-oswald uppercase tracking-widest font-bold text-lg rounded-sm transition-all transform hover:scale-105"
+             >
+                Apply for Boxing Camp
+             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Asset Validation Debug Panel (Temporary - To be removed after verification) */}
+      <section className="bg-red-50 border-y-2 border-red-500 p-8 my-20 max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between mb-8">
+           <h3 className="text-2xl font-bold text-red-600 uppercase tracking-tighter">Asset Validation Debug Panel</h3>
+           <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold uppercase">Dev Only</span>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {Object.entries(IMAGES).map(([key, url]) => (
+            <div key={key} className="space-y-3 p-4 bg-white border border-red-200 shadow-sm rounded-lg">
+              <div className="flex justify-between items-center">
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{key}</p>
+                <div className="w-2 h-2 rounded-full bg-green-500" id={`status-${key}`}></div>
+              </div>
+              <p className="text-[9px] font-mono break-all text-gray-500 bg-gray-50 p-2 rounded">{url}</p>
+              <div className="relative aspect-video bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 rounded">
+                <img 
+                  src={url} 
+                  alt={key}
+                  className="w-full h-full object-cover"
+                  onLoad={() => {
+                    const status = document.getElementById(`status-${key}`);
+                    if (status) status.classList.replace('bg-green-500', 'bg-emerald-500');
+                  }}
+                  onError={(e) => {
+                    console.error(`CRITICAL: Asset Load Failure - ${key} @ ${url}`);
+                    const status = document.getElementById(`status-${key}`);
+                    if (status) status.classList.replace('bg-green-500', 'bg-red-500');
+                    (e.target as HTMLImageElement).style.opacity = '0.1';
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default HomeSection;
