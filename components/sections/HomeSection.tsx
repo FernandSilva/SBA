@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { IMAGES, VIDEOS } from '../../constants';
 import { PageType } from '../../types';
 import { Camera, Zap, Target, Activity, Trophy, MapPin, ArrowRight, Play } from 'lucide-react';
@@ -53,7 +53,6 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
       await current.play();
       setPlayingKey(key);
     } catch {
-      // If autoplay restrictions or user gesture issues occur, keep it paused
       setPlayingKey(null);
     }
   };
@@ -61,6 +60,28 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
   const onEnded = (key: string) => {
     if (playingKey === key) setPlayingKey(null);
   };
+
+  // --- Mobile-only slider for the 4 proof images under the italic statement ---
+  const proofImages = useMemo(
+    () => [
+      { src: IMAGES.fightAction3, alt: 'High Intensity Conditioning' },
+      { src: IMAGES.groupIntensity, alt: 'Technical Instruction' },
+      { src: IMAGES.fightAction2, alt: 'Ring Credibility' },
+      { src: IMAGES.venueWide, alt: 'SBA Venue Proof' },
+      { src: IMAGES.fightAction8, alt: 'Fight Night' },
+    ],
+    []
+  );
+
+  const [proofSlide, setProofSlide] = useState(0);
+
+  // Auto-slide logic (mobile only section is shown via CSS, but timer is lightweight)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProofSlide((prev) => (prev + 1) % proofImages.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [proofImages.length]);
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 bg-white">
@@ -74,7 +95,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
 
         {/* Primary Impact Image - Boxing proof */}
         <div className="w-full h-[50vh] md:h-[70vh] mb-16 overflow-hidden rounded-sm shadow-2xl border border-[#e5e5e5]">
-          <img src={IMAGES.fightAction} alt="SBA Boxing Community" className="w-full h-full object-cover" />
+          <img src={IMAGES.fightAction2} alt="SBA Boxing Community" className="w-full h-full object-cover" />
         </div>
 
         <div className="max-w-7xl mx-auto">
@@ -93,10 +114,43 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               <p className="font-bold text-[#0a0a0a] border-l-4 border-[#b91c1c] pl-6 py-4 bg-[#f9fafb] italic">
                 SBA is not a drop-in fitness class. It is a boxing academy focused on real progression, discipline, and performance.
               </p>
+
+              {/* UPDATED (MOBILE ONLY): Proof Images Slider (FULL WIDTH on mobile) */}
+              <div className="block lg:hidden mt-8">
+                <div className="w-full mx-auto">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-[#e5e5e5] shadow-xl bg-black">
+                    {proofImages.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                          proofSlide === idx ? 'opacity-100' : 'opacity-0'
+                        }`}
+                      >
+                        <img src={img.src} alt={img.alt} className="w-full h-full object-cover" />
+                        <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm p-3">
+                          <p className="text-white font-oswald uppercase text-[10px] tracking-widest text-center">{img.alt}</p>
+                        </div>
+                      </div>
+                    ))}
+
+                    {/* Slider Dots */}
+                    <div className="absolute bottom-12 left-0 right-0 flex justify-center space-x-2">
+                      {proofImages.map((_, idx) => (
+                        <div
+                          key={idx}
+                          className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                            proofSlide === idx ? 'bg-[#b91c1c] w-4' : 'bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Imagery Proof Grid */}
-            <div className="grid grid-cols-2 gap-4">
+            {/* Imagery Proof Grid (DESKTOP unchanged) */}
+            <div className= "hidden lg:grid grid-cols-2 gap-4">
               <div className="space-y-4">
                 <img
                   src={IMAGES.fightAction3}
@@ -113,7 +167,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               </div>
               <div className="space-y-4">
                 <img
-                  src={IMAGES.fightAction2}
+                  src={IMAGES.fightAction8}
                   alt="Ring Credibility"
                   className="w-full h-48 object-cover rounded-sm border border-[#e5e5e5] shadow-lg"
                   loading="lazy"
@@ -232,10 +286,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">{videoItems.length} clips</p>
             </div>
 
-            <div
-              className="flex overflow-x-auto gap-4 pb-2 snap-x snap-mandatory scrollbar-hide"
-              style={{ WebkitOverflowScrolling: 'touch' }}
-            >
+            <div className="flex overflow-x-auto gap-4 pb-2 snap-x snap-mandatory scrollbar-hide" style={{ WebkitOverflowScrolling: 'touch' }}>
               {videoItems.map((item) => (
                 <div
                   key={item.key}
@@ -245,7 +296,6 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
                     md:w-[220px]
                   "
                 >
-                  {/* Perfect square tile. Smaller on desktop. */}
                   <button
                     type="button"
                     onClick={() => togglePlay(item.key)}
@@ -263,7 +313,6 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
                       onEnded={() => onEnded(item.key)}
                     />
 
-                    {/* Click overlay - shows play icon when paused */}
                     {playingKey !== item.key && (
                       <div className="absolute inset-0 bg-black/25 flex items-center justify-center transition-opacity group-hover:bg-black/35">
                         <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-xl">
@@ -272,7 +321,6 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
                       </div>
                     )}
 
-                    {/* Small label */}
                     <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent text-left">
                       <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white">{item.label}</p>
                     </div>
@@ -281,9 +329,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               ))}
             </div>
 
-            <p className="mt-4 text-[11px] text-gray-500">
-              Scroll left/right to browse. Tap a video to play. Tap again to pause.
-            </p>
+            <p className="mt-4 text-[11px] text-gray-500">Scroll left/right to browse. Tap a video to play. Tap again to pause.</p>
           </div>
 
           <div className="mt-16 text-center">

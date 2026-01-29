@@ -23,6 +23,7 @@ export const IMAGES = {
   fightAction2: '/images/sba/fight-action2.jpeg',
   fightAction3: '/images/sba/fight-action3.jpeg',
   fightAction7: '/images/sba/fight-action7.jpeg',
+  fightAction8: '/images/sba/fight-action8.jpeg',
   groupIntensity: '/images/sba/group-intensity.jpeg',
   technicalGroup: '/images/sba/technical-group.jpeg',
   venueWide: '/images/sba/venue-wide.jpeg',
@@ -63,7 +64,7 @@ export const SCHEDULE_BREAKDOWN = [
     desc: 'Dynamic warm-up focusing on joint mobility, footwork activation, and light cardio to prepare the body for boxing-specific movement.' 
   },
   { 
-    duration: '15 minutes', 
+    duration: '10 minutes', 
     title: 'Technical Sets & Fundamentals', 
     desc: 'Structured boxing sets focusing on stance, guard, balance, and basic combinations. Emphasis on correct technique and repetition.' 
   },
@@ -73,12 +74,12 @@ export const SCHEDULE_BREAKDOWN = [
     desc: 'Boxing-specific endurance training designed to build stamina without sacrificing form. This includes controlled rounds and timed intervals.' 
   },
   { 
-    duration: '15 minutes', 
+    duration: '25 minutes', 
     title: 'Padwork & Intensive Coaching', 
     desc: 'High-focus pad sessions working combinations, timing, and punch accuracy. Intensity is adjusted based on group level, with individual coaching feedback throughout.' 
   },
   { 
-    duration: '10 minutes', 
+    duration: '5 minutes', 
     title: 'Cool-Down & Relaxation', 
     desc: 'Breathing exercises, light stretching, and recovery guidance to finish the session properly and reduce injury risk.' 
   }
