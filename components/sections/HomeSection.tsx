@@ -65,10 +65,14 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
   const proofImages = useMemo(
     () => [
       { src: IMAGES.fightAction3, alt: 'High Intensity Conditioning' },
-      { src: IMAGES.groupIntensity, alt: 'Technical Instruction' },
-      { src: IMAGES.fightAction2, alt: 'Ring Credibility' },
+      { src: IMAGES.fightAction2, alt: 'Sparring Proficiency' },
+      { src: IMAGES.fightAction7, alt: 'Amateur boxing' },
+      { src: IMAGES.fightAction8, alt: 'Ringside guidance' },
+      { src: IMAGES.fightAction, alt: 'Professional boxing' },
+      { src: IMAGES.coachDetail5, alt: 'White-collar boxing' },
       { src: IMAGES.venueWide, alt: 'SBA Venue Proof' },
-      { src: IMAGES.fightAction8, alt: 'Fight Night' },
+      { src: IMAGES.groupIntensity, alt: 'Technical Instruction' },
+      
     ],
     []
   );
@@ -95,13 +99,14 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
 
         {/* Primary Impact Image - Boxing proof */}
         <div className="w-full h-[50vh] md:h-[70vh] mb-16 overflow-hidden rounded-sm shadow-2xl border border-[#e5e5e5]">
-          <img src={IMAGES.fightAction2} alt="SBA Boxing Community" className="w-full h-full object-cover" />
+          <img src={IMAGES.coachSparing} alt="SBA Boxing Community" className="w-full h-full object-cover" />
         </div>
 
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-6 text-gray-600 leading-relaxed text-lg text-left">
-              <h3 className="text-2xl font-oswald uppercase text-[#0a0a0a]">A Boxing Club Built on Structure and Intensity</h3>
+              <h3 className="text-2xl font-oswald uppercase text-[#0a0a0a]">Boxing sessions Built <span className="text-[#b91c1c]">on Structure and Intensity</span>
+              </h3>
               <p>
                 Silva Boxing Academy is a boxing club delivering high-intensity group training through structured three-week programs.
                 Each session is designed to build boxing skill, conditioning, and confidence through a combination of padwork, cardio,

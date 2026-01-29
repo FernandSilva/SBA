@@ -30,8 +30,11 @@ export const IMAGES = {
   coachHero: '/images/sba/coach-hero.jpeg',
   coachHero2: '/images/sba/coach-hero2.jpeg',
   coachDetail: '/images/sba/coach-detail.jpeg',
-  coachDetail2: '/images/sba/coach-detail2.jpeg'
+  coachDetail2: '/images/sba/coach-detail2.jpeg',
+  coachDetail5: '/images/sba/coach-detail5.jpeg',
+  coachSparing: '/images/sba/coach-sparing.jpeg',
 };
+
 
 export const VIDEOS = {
   vid1: '/images/sba/Vid1.mp4',
@@ -49,10 +52,10 @@ export const CAMP_DATA = {
   day: 'Thursday',
   time: '18:00 – 19:00',
   sessionLength: '60 minutes',
-  nextCampStart: 'Thursday, 16 May',
+  nextCampStart: 'Thursday, 12 February',
   pricing: {
     beginner: '€50 total for all three sessions',
-    returningSingle: '€10 per individual session',
+    returningSingle: '€20 per individual session',
     returningUpfront: '€50 for all three sessions'
   }
 };
