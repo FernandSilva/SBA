@@ -12,24 +12,24 @@ const ContactSection: React.FC = () => {
       {
         id: 'cycle-1',
         title: 'Next Cycle',
-        startLabel: 'Thu 15 Feb',
-        weeks: ['Thu 15 Feb', 'Thu 22 Feb', 'Thu 29 Feb'],
+        startLabel: 'Thu 12 Feb',
+        weeks: ['Thu 12 Feb', 'Thu 19 Feb', 'Thu 26 Feb'],
         status: 'Taking bookings',
         capacityText: 'Max 10 participants'
       },
       {
         id: 'cycle-2',
         title: 'Following Cycle',
-        startLabel: 'Thu 07 Mar',
-        weeks: ['Thu 07 Mar', 'Thu 14 Mar', 'Thu 21 Mar'],
+        startLabel: 'Thu 05 Mar',
+        weeks: ['Thu 05 Mar', 'Thu 12 Mar', 'Thu 19 Mar'],
         status: 'Taking bookings',
         capacityText: 'Max 10 participants'
       },
       {
         id: 'cycle-3',
         title: 'Next After That',
-        startLabel: 'Thu 28 Mar',
-        weeks: ['Thu 28 Mar', 'Thu 04 Apr', 'Thu 11 Apr'],
+        startLabel: 'Thu 26 Mar',
+        weeks: ['Thu 26 Mar', 'Thu 02 Apr', 'Thu 9 Apr'],
         status: 'Taking bookings',
         capacityText: 'Max 10 participants'
       }
