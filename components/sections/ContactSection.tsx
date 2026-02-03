@@ -1,12 +1,22 @@
 import React, { useMemo, useState } from 'react';
 import { FAQS, CAMP_DATA, IMAGES } from '../../constants';
-import { Mail, MapPin, Phone, ChevronDown, ChevronUp, Send, Check, Calendar, Users, BadgeEuro } from 'lucide-react';
+import {
+  Mail,
+  MapPin,
+  Phone,
+  ChevronDown,
+  ChevronUp,
+  Calendar,
+  Users,
+  BadgeEuro,
+  MessageCircle,
+  ArrowRight
+} from 'lucide-react';
 
 const ContactSection: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success'>('idle');
 
-  // --- Booking model (UI only; still simulated submission) ---
+  // --- Booking model (UI only) ---
   const cycleOptions = useMemo(
     () => [
       {
@@ -37,43 +47,43 @@ const ContactSection: React.FC = () => {
     []
   );
 
-  const packageOptions = useMemo(
-    () => [
-      {
-        id: 'p3',
-        label: '3 Classes (1 Cycle)',
-        priceLabel: '€50 total',
-        note: 'Best for first-timers (recommended).'
-      },
-      {
-        id: 'p6',
-        label: '6 Classes (2 Cycles)',
-        priceLabel: '€90 total',
-        note: '€45 per cycle when booked upfront.'
-      },
-      {
-        id: 'p9',
-        label: '9 Classes (3 Cycles)',
-        priceLabel: '€120 total',
-        note: '€40 per cycle when booked upfront.'
-      }
-    ],
-    []
+const packageOptions = useMemo(
+  () => [
+    {
+      id: 'p3',
+      label: '3 Classes (1 Cycle)',
+      priceLabel: '€50 total',
+      note: '€16.70 per class — ideal for first-time members.'
+    },
+    {
+      id: 'p6',
+      label: '6 Classes (2 Cycles)',
+      priceLabel: '€80 total',
+      note: '€13.30 per class when booked upfront.'
+    },
+    {
+      id: 'p9',
+      label: '9 Classes (3 Cycles)',
+      priceLabel: '€90 total',
+      note: 'Only €10 per class — best value package.'
+    }
+  ],
+  []
+);
+
+
+
+
+  const WHATSAPP_NUMBER_DISPLAY = '+49 152 0421 9720';
+  const WHATSAPP_NUMBER_E164 = '4915204219720';
+  const WHATSAPP_TEXT = encodeURIComponent(
+    "Hi SBA — I'd like to book a place. Which cycle has availability?"
   );
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus('sending');
-
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formData.entries());
-
-    // Simulated submission (no backend yet)
-    console.log(`SIGN-UP REQUEST (simulated) -> ${CAMP_DATA.contactEmail}`, data);
-
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setFormStatus('success');
-  };
+  const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${WHATSAPP_TEXT}`;
+  const emailHref = `mailto:silvaboxingacademy@gmail.com?subject=${encodeURIComponent(
+    'SBA Booking Request'
+  )}`;
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 py-24 max-w-7xl mx-auto px-4 bg-[#0a0a0a]">
@@ -83,9 +93,11 @@ const ContactSection: React.FC = () => {
           Join <span className="text-[#b91c1c]">SBA</span>
         </h2>
         <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
-          This is the sign-up page for SBA’s three-week cycles. Each cycle runs for <span className="text-white font-semibold">3 Thursdays</span>,
-          with a maximum of <span className="text-white font-semibold">10 participants</span> per cycle. Book your place below or message us directly
-          for a quick response.
+          This is the sign-up page for SBA’s three-week cycles. Each cycle runs for{' '}
+          <span className="text-white font-semibold">3 Thursdays</span>, with a maximum of{' '}
+          <span className="text-white font-semibold">10 participants</span> per cycle.
+          <span className="text-white font-semibold"> Booking is handled via WhatsApp or email</span>{' '}
+          for fast confirmation and a real human reply.
         </p>
       </div>
 
@@ -93,7 +105,7 @@ const ContactSection: React.FC = () => {
       <div className="grid lg:grid-cols-12 gap-10 mb-16 items-start">
         {/* Left: Image + direct contact CTA */}
         <div className="lg:col-span-5">
-        <div className="overflow-hidden rounded-sm border border-[#222222] shadow-2xl bg-black">
+          <div className="overflow-hidden rounded-sm border border-[#222222] shadow-2xl bg-black">
             <img
               src={IMAGES.coachHero2}
               alt="SBA in-ring action"
@@ -102,11 +114,13 @@ const ContactSection: React.FC = () => {
             />
           </div>
 
-
           <div className="mt-8 p-6 bg-[#111111] border border-[#222222] rounded-sm">
-            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">Fastest way to book</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">
+              Book your place
+            </p>
             <p className="text-gray-300 text-sm leading-relaxed">
-              Want a quick human response? Message us on WhatsApp or email us and we’ll confirm availability and the next cycle within 24 hours.
+              For now, all bookings are confirmed via WhatsApp or email. Message us and we’ll reply
+              with availability, what to bring, and how to secure your spot.
             </p>
 
             <div className="mt-6 grid gap-4">
@@ -114,9 +128,11 @@ const ContactSection: React.FC = () => {
                 <div className="w-11 h-11 rounded-sm border border-[#222222] flex items-center justify-center text-[#b91c1c]">
                   <Phone className="w-5 h-5" />
                 </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Phone / WhatsApp</p>
-                  <p className="text-white font-medium">+49 152 0421 9720</p>
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">
+                    Phone / WhatsApp
+                  </p>
+                  <p className="text-white font-medium break-words">{WHATSAPP_NUMBER_DISPLAY}</p>
                 </div>
               </div>
 
@@ -124,9 +140,11 @@ const ContactSection: React.FC = () => {
                 <div className="w-11 h-11 rounded-sm border border-[#222222] flex items-center justify-center text-[#b91c1c]">
                   <Mail className="w-5 h-5" />
                 </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Email</p>
-                  <p className="text-white font-medium">silvaboxingacademy@gmail.com</p>
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">
+                    Email
+                  </p>
+                  <p className="text-white font-medium break-words">silvaboxingacademy@gmail.com</p>
                 </div>
               </div>
 
@@ -134,12 +152,92 @@ const ContactSection: React.FC = () => {
                 <div className="w-11 h-11 rounded-sm border border-[#222222] flex items-center justify-center text-[#b91c1c]">
                   <MapPin className="w-5 h-5" />
                 </div>
-                <div>
-                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Location</p>
-                  <p className="text-white font-medium">{CAMP_DATA.location}</p>
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">
+                    Location
+                  </p>
+                  <p className="text-white font-medium break-words">{CAMP_DATA.location}</p>
                   <p className="text-xs text-gray-500">Exact address provided after inquiry</p>
                 </div>
               </div>
+            </div>
+
+            {/* Primary CTAs */}
+            <div className="mt-7 grid sm:grid-cols-2 gap-3">
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full bg-[#b91c1c] hover:bg-[#991b1b] text-white py-4 rounded-sm font-oswald uppercase font-bold tracking-[0.2em] transition-all flex items-center justify-center space-x-3"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp to Book</span>
+              </a>
+
+              <a
+                href={emailHref}
+                className="w-full bg-transparent hover:bg-white/5 text-white py-4 rounded-sm font-oswald uppercase font-bold tracking-[0.2em] transition-all flex items-center justify-center space-x-3 border border-[#222222] hover:border-[#b91c1c]"
+              >
+                <Mail className="w-4 h-4 text-[#b91c1c]" />
+                <span>Email Request</span>
+              </a>
+            </div>
+
+            <div className="mt-5 text-[11px] text-gray-500 leading-relaxed">
+              Tip: include your <span className="text-gray-300">name</span>,{' '}
+              <span className="text-gray-300">experience level</span>, and which{' '}
+              <span className="text-gray-300">cycle</span> you want.
+            </div>
+          </div>
+
+          {/* Replacement for removed form: “How booking works” */}
+          <div className="mt-8 p-6 bg-[#111111] border border-[#222222] rounded-sm">
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-3">
+              How booking works
+            </p>
+
+            <div className="space-y-4">
+              {[
+                {
+                  title: '1) Choose a cycle',
+                  desc: 'Pick one of the upcoming 3-week blocks shown on the right.'
+                },
+                {
+                  title: '2) Message us to confirm availability',
+                  desc: 'We’ll reply quickly and confirm whether there’s space (max 10).'
+                },
+                {
+                  title: '3) Secure your spot',
+                  desc: 'We’ll send payment details and your onboarding instructions.'
+                }
+              ].map((step, idx) => (
+                <div key={idx} className="flex items-start space-x-4">
+                  <div className="w-9 h-9 rounded-sm border border-[#222222] flex items-center justify-center text-[#b91c1c] font-bold">
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <p className="text-white font-oswald uppercase tracking-widest text-sm">
+                      {step.title}
+                    </p>
+                    <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
+              <p className="text-xs text-gray-500">
+                Fastest: WhatsApp. Best for structured details: Email.
+              </p>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#b91c1c] font-oswald uppercase tracking-widest text-xs font-bold flex items-center space-x-2"
+              >
+                <span>Start booking</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
@@ -147,7 +245,9 @@ const ContactSection: React.FC = () => {
         {/* Right: Cycle cards */}
         <div className="lg:col-span-7">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-3xl font-oswald uppercase text-white">Upcoming <span className="text-[#b91c1c]">Cycles</span></h3>
+            <h3 className="text-3xl font-oswald uppercase text-white">
+              Upcoming <span className="text-[#b91c1c]">Cycles</span>
+            </h3>
             <div className="hidden sm:flex items-center space-x-2 text-gray-400 text-xs uppercase tracking-[0.25em] font-bold">
               <Users className="w-4 h-4 text-[#b91c1c]" />
               <span>Max 10 per cycle</span>
@@ -156,10 +256,15 @@ const ContactSection: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {cycleOptions.map((c) => (
-              <div key={c.id} className="bg-[#111111] border border-[#222222] rounded-sm p-6 hover:border-[#b91c1c] transition-colors">
+              <div
+                key={c.id}
+                className="bg-[#111111] border border-[#222222] rounded-sm p-6 hover:border-[#b91c1c] transition-colors"
+              >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">{c.title}</p>
+                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
+                      {c.title}
+                    </p>
                     <p className="text-xl font-oswald uppercase text-white mt-2">{c.startLabel}</p>
                   </div>
                   <span className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 bg-[#b91c1c]/15 text-[#b91c1c] rounded-full">
@@ -195,7 +300,9 @@ const ContactSection: React.FC = () => {
             <div className="grid md:grid-cols-3 gap-5">
               {packageOptions.map((p) => (
                 <div key={p.id} className="border border-[#222222] rounded-sm p-5 bg-black/30">
-                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">{p.label}</p>
+                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">
+                    {p.label}
+                  </p>
                   <p className="text-2xl font-oswald uppercase text-white mt-2">{p.priceLabel}</p>
                   <p className="text-xs text-gray-400 mt-2 leading-relaxed">{p.note}</p>
                 </div>
@@ -209,11 +316,13 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Form + FAQ (kept in same theme, better flow) */}
+      {/* FAQ (expanded purpose, no form) */}
       <div className="grid lg:grid-cols-2 gap-20">
         {/* Left: FAQ */}
         <div>
-          <h3 className="text-2xl font-oswald uppercase mb-6 text-white">Frequently Asked Questions</h3>
+          <h3 className="text-2xl font-oswald uppercase mb-6 text-white">
+            Frequently Asked Questions
+          </h3>
           <div className="space-y-4">
             {FAQS.map((faq, idx) => (
               <div key={idx} className="border border-[#222222] rounded-sm overflow-hidden bg-[#111111]">
@@ -221,7 +330,9 @@ const ContactSection: React.FC = () => {
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-5 hover:bg-[#1a1a1a] transition-colors text-left"
                 >
-                  <span className="font-bold text-sm tracking-wide text-white uppercase">{faq.question}</span>
+                  <span className="font-bold text-sm tracking-wide text-white uppercase">
+                    {faq.question}
+                  </span>
                   {openFaq === idx ? (
                     <ChevronUp className="w-4 h-4 text-[#b91c1c]" />
                   ) : (
@@ -238,165 +349,36 @@ const ContactSection: React.FC = () => {
           </div>
 
           <div className="mt-10 p-6 bg-[#111111] border border-[#222222] rounded-sm">
-            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">Best booking advice</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">
+              Booking advice
+            </p>
             <p className="text-gray-400 text-sm leading-relaxed">
-              If you want a fast confirmation, message WhatsApp first. If you prefer a structured sign-up and follow-up, use the form.
+              For fast confirmation, use WhatsApp. For longer notes or scheduling constraints, use email.
+              We reply within 24 hours.
             </p>
-          </div>
-        </div>
 
-        {/* Right: Application Form */}
-        <div className="bg-[#111111] p-10 rounded-sm border border-[#222222] shadow-2xl h-fit">
-          <div className="mb-10">
-            <h3 className="text-3xl font-oswald uppercase mb-2 text-white">Cycle Booking Form</h3>
-            <p className="text-gray-500 text-sm">
-              This form is currently simulated (no email sending yet). It records the details and shows a confirmation screen.
-            </p>
-          </div>
-
-          {formStatus === 'success' ? (
-            <div className="text-center py-20 animate-in zoom-in duration-500">
-              <div className="w-20 h-20 bg-[#1a1a1a] border border-[#b91c1c] rounded-full flex items-center justify-center mx-auto mb-6">
-                <Check className="w-10 h-10 text-[#b91c1c]" />
-              </div>
-              <h4 className="text-2xl font-oswald uppercase text-white mb-2">Request Received</h4>
-              <p className="text-gray-400">
-                Your booking request has been recorded. We will confirm availability via email or WhatsApp within 24 hours.
-              </p>
-              <button
-                onClick={() => setFormStatus('idle')}
-                className="mt-8 text-[#b91c1c] font-oswald uppercase text-xs tracking-widest font-bold underline underline-offset-8"
+            <div className="mt-6 grid sm:grid-cols-2 gap-3">
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full bg-[#b91c1c] hover:bg-[#991b1b] text-white py-4 rounded-sm font-oswald uppercase font-bold tracking-[0.2em] transition-all flex items-center justify-center space-x-3"
               >
-                Send another request
-              </button>
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp</span>
+              </a>
+
+              <a
+                href={emailHref}
+                className="w-full bg-transparent hover:bg-white/5 text-white py-4 rounded-sm font-oswald uppercase font-bold tracking-[0.2em] transition-all flex items-center justify-center space-x-3 border border-[#222222] hover:border-[#b91c1c]"
+              >
+                <Mail className="w-4 h-4 text-[#b91c1c]" />
+                <span>Email</span>
+              </a>
             </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Booking selection */}
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">
-                    Select Cycle
-                  </label>
-                  <select
-                    name="cycle"
-                    className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white appearance-none"
-                    defaultValue={cycleOptions[0].id}
-                    required
-                  >
-                    {cycleOptions.map((c) => (
-                      <option key={c.id} value={c.id}>
-                        {c.title} — starts {c.startLabel}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">
-                    Package
-                  </label>
-                  <select
-                    name="package"
-                    className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white appearance-none"
-                    defaultValue={packageOptions[0].id}
-                    required
-                  >
-                    {packageOptions.map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {p.label} — {p.priceLabel}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* Core details */}
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">Full Name</label>
-                  <input
-                    name="fullName"
-                    required
-                    type="text"
-                    className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">Email Address</label>
-                  <input
-                    name="email"
-                    required
-                    type="email"
-                    className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white"
-                  />
-                </div>
-              </div>
-
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">Phone / WhatsApp</label>
-                  <input
-                    name="phone"
-                    required
-                    type="tel"
-                    className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">Experience Level</label>
-                  <select
-                    name="experience"
-                    className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white appearance-none"
-                    defaultValue="Novice"
-                  >
-                    <option value="Novice">Novice (First-Time Camp)</option>
-                    <option value="Amateur">Amateur (Returning Participant)</option>
-                    <option value="Advanced">Advanced / Professional</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">Primary Goals</label>
-                <input
-                  name="goals"
-                  type="text"
-                  placeholder="e.g., Technical growth, endurance, foundation building"
-                  className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[10px] font-bold uppercase tracking-[0.2em] text-[#b91c1c] mb-2">Message</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  className="w-full bg-black border border-[#222222] rounded-sm px-4 py-3 focus:outline-none focus:border-[#b91c1c] text-white resize-none"
-                />
-              </div>
-
-              <button
-                disabled={formStatus === 'sending'}
-                type="submit"
-                className="w-full bg-[#b91c1c] hover:bg-[#991b1b] text-white py-5 rounded-sm font-oswald uppercase font-bold tracking-[0.2em] transition-all flex items-center justify-center space-x-3 disabled:opacity-50"
-              >
-                {formStatus === 'sending' ? (
-                  <span className="animate-pulse italic">Processing...</span>
-                ) : (
-                  <>
-                    <span>Request Booking</span>
-                    <Send className="w-4 h-4" />
-                  </>
-                )}
-              </button>
-
-              <p className="text-[11px] text-gray-500 leading-relaxed">
-                Prefer instant confirmation? WhatsApp is fastest. This form is best for structured follow-up and booking details.
-              </p>
-            </form>
-          )}
+          </div>
         </div>
+       
       </div>
     </div>
   );

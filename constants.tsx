@@ -89,6 +89,12 @@ export const SCHEDULE_BREAKDOWN = [
 ];
 
 export const FAQS: FAQItem[] = [
+      {
+        question: "What equipment do I need?",
+        answer:
+          "Hand wraps and a mouthguard are required. Gloves can be recommended based on your size and goals. Members are also encouraged to bring a yoga or exercise mat for floor-based warm-ups, mobility work, or recovery exercises."
+      }
+  ,
   {
     question: "Do I need experience to join?",
     answer: "No. Beginners are welcome. We teach fundamentals properly and scale intensity safely."
@@ -101,14 +107,13 @@ export const FAQS: FAQItem[] = [
     question: "What if I'm not fit yet?",
     answer: "That is exactly what camp is for. We build your conditioning progressively."
   },
+
   {
-    question: "What equipment do I need?",
-    answer: "Hand wraps and a mouthguard. Gloves can be recommended based on your size and goals."
-  },
-  {
-    question: "How do I apply?",
-    answer: "Use the application form and we will contact you with start dates and onboarding steps."
-  }
+  question: "How do I apply?",
+  answer:
+    "The fastest way to apply is to contact us directly via WhatsApp. You can also email, call, or send an SMS, and we’ll confirm availability, start dates, and onboarding steps."
+}
+
 ];
 
 export const HIGHLIGHTS = [
