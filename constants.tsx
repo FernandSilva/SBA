@@ -92,7 +92,7 @@ export const FAQS: FAQItem[] = [
       {
         question: "What equipment do I need?",
         answer:
-          "Hand wraps and a mouthguard are required. Gloves can be recommended based on your size and goals. Members are also encouraged to bring a yoga or exercise mat for floor-based warm-ups, mobility work, or recovery exercises."
+          "Hand wraps and boxing gloves are mandatory for training. A mouthguard is strongly recommended for safer protection. For floor-based warm-ups, mobility, or recovery work, we also recommend bringing a yoga mat or gym towel."
       }
   ,
   {

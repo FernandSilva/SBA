@@ -47,43 +47,45 @@ const ContactSection: React.FC = () => {
     []
   );
 
-const packageOptions = useMemo(
-  () => [
-    {
-      id: 'p3',
-      label: '3 Classes (1 Cycle)',
-      priceLabel: '€50 total',
-      note: '€16.70 per class — ideal for first-time members.'
-    },
-    {
-      id: 'p6',
-      label: '6 Classes (2 Cycles)',
-      priceLabel: '€80 total',
-      note: '€13.30 per class when booked upfront.'
-    },
-    {
-      id: 'p9',
-      label: '9 Classes (3 Cycles)',
-      priceLabel: '€90 total',
-      note: 'Only €10 per class — best value package.'
-    }
-  ],
-  []
-);
-
-
-
+  // ✅ UPDATED: pricing ordered + “per class” + value-forward messaging
+  // NOTE: totals here follow your brief: 9 classes = €90 total (=> €10/class, €30 per 3-class cycle)
+  // If your final totals differ, change ONLY the totals below — the per-class strings should be updated accordingly.
+  const packageOptions = useMemo(
+    () => [
+      {
+        id: 'p9',
+        label: 'Best Value — 9 Classes (3 Cycles)',
+        priceLabel: '€90 total',
+        headline: '€30 per 3-class cycle',
+        subline: 'Only €10 per class when you commit to 9 classes upfront.',
+        note: 'Most popular for members who want consistent progress and the best rate.'
+      },
+      {
+        id: 'p6',
+        label: 'Commitment — 6 Classes (2 Cycles)',
+        priceLabel: '€80 total',
+        headline: '€40 per 3-class cycle',
+        subline: 'About €13.33 per class when you commit to 6 classes upfront.',
+        note: 'Great balance of value + flexibility if you’re locking in 2 cycles.'
+      },
+      {
+        id: 'p3',
+        label: 'Starter — 3 Classes (1 Cycle)',
+        priceLabel: '€50 total',
+        headline: 'One full 3-week cycle',
+        subline: 'About €16.67 per class for a single cycle booking.',
+        note: 'Best if you want to try SBA first before committing to multiple cycles.'
+      }
+    ],
+    []
+  );
 
   const WHATSAPP_NUMBER_DISPLAY = '+49 152 0421 9720';
   const WHATSAPP_NUMBER_E164 = '4915204219720';
-  const WHATSAPP_TEXT = encodeURIComponent(
-    "Hi SBA — I'd like to book a place. Which cycle has availability?"
-  );
+  const WHATSAPP_TEXT = encodeURIComponent("Hi SBA — I'd like to book a place. Which cycle has availability?");
 
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${WHATSAPP_TEXT}`;
-  const emailHref = `mailto:silvaboxingacademy@gmail.com?subject=${encodeURIComponent(
-    'SBA Booking Request'
-  )}`;
+  const emailHref = `mailto:silvaboxingacademy@gmail.com?subject=${encodeURIComponent('SBA Booking Request')}`;
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 py-24 max-w-7xl mx-auto px-4 bg-[#0a0a0a]">
@@ -115,12 +117,10 @@ const packageOptions = useMemo(
           </div>
 
           <div className="mt-8 p-6 bg-[#111111] border border-[#222222] rounded-sm">
-            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">
-              Book your place
-            </p>
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">Book your place</p>
             <p className="text-gray-300 text-sm leading-relaxed">
-              For now, all bookings are confirmed via WhatsApp or email. Message us and we’ll reply
-              with availability, what to bring, and how to secure your spot.
+              For now, all bookings are confirmed via WhatsApp or email. Message us and we’ll reply with availability,
+              what to bring, and how to secure your spot.
             </p>
 
             <div className="mt-6 grid gap-4">
@@ -129,9 +129,7 @@ const packageOptions = useMemo(
                   <Phone className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">
-                    Phone / WhatsApp
-                  </p>
+                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Phone / WhatsApp</p>
                   <p className="text-white font-medium break-words">{WHATSAPP_NUMBER_DISPLAY}</p>
                 </div>
               </div>
@@ -141,9 +139,7 @@ const packageOptions = useMemo(
                   <Mail className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">
-                    Email
-                  </p>
+                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Email</p>
                   <p className="text-white font-medium break-words">silvaboxingacademy@gmail.com</p>
                 </div>
               </div>
@@ -153,9 +149,7 @@ const packageOptions = useMemo(
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">
-                    Location
-                  </p>
+                  <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Location</p>
                   <p className="text-white font-medium break-words">{CAMP_DATA.location}</p>
                   <p className="text-xs text-gray-500">Exact address provided after inquiry</p>
                 </div>
@@ -192,33 +186,20 @@ const packageOptions = useMemo(
 
           {/* Replacement for removed form: “How booking works” */}
           <div className="mt-8 p-6 bg-[#111111] border border-[#222222] rounded-sm">
-            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-3">
-              How booking works
-            </p>
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-3">How booking works</p>
 
             <div className="space-y-4">
               {[
-                {
-                  title: '1) Choose a cycle',
-                  desc: 'Pick one of the upcoming 3-week blocks shown on the right.'
-                },
-                {
-                  title: '2) Message us to confirm availability',
-                  desc: 'We’ll reply quickly and confirm whether there’s space (max 10).'
-                },
-                {
-                  title: '3) Secure your spot',
-                  desc: 'We’ll send payment details and your onboarding instructions.'
-                }
+                { title: '1) Choose a cycle', desc: 'Pick one of the upcoming 3-week blocks shown on the right.' },
+                { title: '2) Message us to confirm availability', desc: 'We’ll reply quickly and confirm whether there’s space (max 10).' },
+                { title: '3) Secure your spot', desc: 'We’ll send payment details and your onboarding instructions.' }
               ].map((step, idx) => (
                 <div key={idx} className="flex items-start space-x-4">
                   <div className="w-9 h-9 rounded-sm border border-[#222222] flex items-center justify-center text-[#b91c1c] font-bold">
                     {idx + 1}
                   </div>
                   <div>
-                    <p className="text-white font-oswald uppercase tracking-widest text-sm">
-                      {step.title}
-                    </p>
+                    <p className="text-white font-oswald uppercase tracking-widest text-sm">{step.title}</p>
                     <p className="text-gray-400 text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
@@ -226,9 +207,7 @@ const packageOptions = useMemo(
             </div>
 
             <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
-              <p className="text-xs text-gray-500">
-                Fastest: WhatsApp. Best for structured details: Email.
-              </p>
+              <p className="text-xs text-gray-500">Fastest: WhatsApp. Best for structured details: Email.</p>
               <a
                 href={whatsappHref}
                 target="_blank"
@@ -262,9 +241,7 @@ const packageOptions = useMemo(
               >
                 <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">
-                      {c.title}
-                    </p>
+                    <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">{c.title}</p>
                     <p className="text-xl font-oswald uppercase text-white mt-2">{c.startLabel}</p>
                   </div>
                   <span className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 bg-[#b91c1c]/15 text-[#b91c1c] rounded-full">
@@ -281,9 +258,7 @@ const packageOptions = useMemo(
                   ))}
                 </div>
 
-                <div className="mt-6 pt-5 border-t border-white/10 text-xs text-gray-400">
-                  {c.capacityText}
-                </div>
+                <div className="mt-6 pt-5 border-t border-white/10 text-xs text-gray-400">{c.capacityText}</div>
               </div>
             ))}
           </div>
@@ -299,18 +274,24 @@ const packageOptions = useMemo(
 
             <div className="grid md:grid-cols-3 gap-5">
               {packageOptions.map((p) => (
-                <div key={p.id} className="border border-[#222222] rounded-sm p-5 bg-black/30">
-                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">
-                    {p.label}
-                  </p>
+                <div
+                  key={p.id}
+                  className="border border-[#222222] rounded-sm p-5 bg-black/30 hover:border-[#b91c1c] transition-colors"
+                >
+                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">{p.label}</p>
+
+                  {/* Value-forward headline */}
                   <p className="text-2xl font-oswald uppercase text-white mt-2">{p.priceLabel}</p>
-                  <p className="text-xs text-gray-400 mt-2 leading-relaxed">{p.note}</p>
+                  <p className="text-sm text-white/90 mt-2 font-semibold">{p.headline}</p>
+                  <p className="text-xs text-gray-300 mt-2 leading-relaxed">{p.subline}</p>
+
+                  <p className="text-xs text-gray-400 mt-4 leading-relaxed">{p.note}</p>
                 </div>
               ))}
             </div>
 
             <p className="text-xs text-gray-500 mt-5">
-              Beginners are recommended to start with a full 3-class cycle for proper progression.
+              Tip: if you’re serious about progress, booking multiple cycles upfront gives you the best rate per class.
             </p>
           </div>
         </div>
@@ -320,9 +301,7 @@ const packageOptions = useMemo(
       <div className="grid lg:grid-cols-2 gap-20">
         {/* Left: FAQ */}
         <div>
-          <h3 className="text-2xl font-oswald uppercase mb-6 text-white">
-            Frequently Asked Questions
-          </h3>
+          <h3 className="text-2xl font-oswald uppercase mb-6 text-white">Frequently Asked Questions</h3>
           <div className="space-y-4">
             {FAQS.map((faq, idx) => (
               <div key={idx} className="border border-[#222222] rounded-sm overflow-hidden bg-[#111111]">
@@ -330,9 +309,7 @@ const packageOptions = useMemo(
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-5 hover:bg-[#1a1a1a] transition-colors text-left"
                 >
-                  <span className="font-bold text-sm tracking-wide text-white uppercase">
-                    {faq.question}
-                  </span>
+                  <span className="font-bold text-sm tracking-wide text-white uppercase">{faq.question}</span>
                   {openFaq === idx ? (
                     <ChevronUp className="w-4 h-4 text-[#b91c1c]" />
                   ) : (
@@ -349,12 +326,9 @@ const packageOptions = useMemo(
           </div>
 
           <div className="mt-10 p-6 bg-[#111111] border border-[#222222] rounded-sm">
-            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">
-              Booking advice
-            </p>
+            <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-2">Booking advice</p>
             <p className="text-gray-400 text-sm leading-relaxed">
-              For fast confirmation, use WhatsApp. For longer notes or scheduling constraints, use email.
-              We reply within 24 hours.
+              For fast confirmation, use WhatsApp. For longer notes or scheduling constraints, use email. We reply within 24 hours.
             </p>
 
             <div className="mt-6 grid sm:grid-cols-2 gap-3">
@@ -378,7 +352,6 @@ const packageOptions = useMemo(
             </div>
           </div>
         </div>
-       
       </div>
     </div>
   );
