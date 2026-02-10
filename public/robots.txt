@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://silverboxingacademy.club/sitemap.xml
+Sitemap: https://silvaboxingacademy.club/sitemap.xml
