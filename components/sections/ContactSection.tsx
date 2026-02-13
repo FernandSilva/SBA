@@ -24,16 +24,16 @@ const ContactSection: React.FC = () => {
         title: 'Next Cycle',
         startLabel: 'Thu 12 Feb',
         weeks: ['Thu 12 Feb', 'Thu 19 Feb', 'Thu 26 Feb'],
-        status: 'Taking bookings',
-        capacityText: 'Max 10 participants'
+        status: 'Limited spaces available',
+        capacityText: 'Max 6 participants'
       },
       {
         id: 'cycle-2',
         title: 'Following Cycle',
         startLabel: 'Thu 05 Mar',
         weeks: ['Thu 05 Mar', 'Thu 12 Mar', 'Thu 19 Mar'],
-        status: 'Taking bookings',
-        capacityText: 'Max 10 participants'
+        status: 'Limited spaces available',
+        capacityText: 'Max 6 participants'
       },
       {
         id: 'cycle-3',
@@ -41,47 +41,48 @@ const ContactSection: React.FC = () => {
         startLabel: 'Thu 26 Mar',
         weeks: ['Thu 26 Mar', 'Thu 02 Apr', 'Thu 9 Apr'],
         status: 'Taking bookings',
-        capacityText: 'Max 10 participants'
+        capacityText: 'Max 6 participants'
       }
     ],
     []
   );
 
-  // ✅ UPDATED: pricing ordered + “per class” + value-forward messaging
-  // NOTE: totals here follow your brief: 9 classes = €90 total (=> €10/class, €30 per 3-class cycle)
-  // If your final totals differ, change ONLY the totals below — the per-class strings should be updated accordingly.
+  // ✅ UPDATED PRICING (removed 9-class option, added 1-session option)
   const packageOptions = useMemo(
     () => [
       {
-        id: 'p9',
-        label: 'Best Value — 9 Classes (3 Cycles)',
-        priceLabel: '€90 total',
-        headline: '€30 per 3-class cycle',
-        subline: 'Only €10 per class when you commit to 9 classes upfront.',
-        note: 'Most popular for members who want consistent progress and the best rate.'
-      },
-      {
         id: 'p6',
-        label: 'Commitment — 6 Classes (2 Cycles)',
+        label: 'Recommended — 6 Classes (2 Cycles)',
         priceLabel: '€80 total',
-        headline: '€40 per 3-class cycle',
-        subline: 'About €13.33 per class when you commit to 6 classes upfront.',
-        note: 'Great balance of value + flexibility if you’re locking in 2 cycles.'
+        headline: 'About €13.33 per class',
+        subline: 'Best balance of value + consistency (recommended for real progress).',
+        note: 'Ideal if you want enough sessions to build rhythm, technique, and conditioning properly.'
       },
       {
         id: 'p3',
         label: 'Starter — 3 Classes (1 Cycle)',
         priceLabel: '€50 total',
-        headline: 'One full 3-week cycle',
-        subline: 'About €16.67 per class for a single cycle booking.',
-        note: 'Best if you want to try SBA first before committing to multiple cycles.'
+        headline: 'About €16.67 per class',
+        subline: 'A full 3-week cycle to learn the fundamentals and get integrated with the team.',
+        note: 'Good for new members who want to try SBA with a complete cycle.'
+      },
+      {
+        id: 'p1',
+        label: 'Single Session — 1 Class (Drop-in)',
+        priceLabel: '€20 total',
+        headline: '€20 per class',
+        subline: 'Best for visitors or a one-off session. For the real SBA experience, book a cycle.',
+        note: 'We strongly recommend booking at least 3 classes so coaching can actually compound.'
       }
     ],
     []
   );
 
-  const WHATSAPP_NUMBER_DISPLAY = '+49 152 0421 9720';
-  const WHATSAPP_NUMBER_E164 = '4915204219720';
+  // ✅ Restored website number (as requested to keep it as-is for now)
+  const WHATSAPP_NUMBER_DISPLAY = '+49 176 5912 4336';
+  // IMPORTANT: wa.me expects digits only, no +, spaces, or parentheses
+  const WHATSAPP_NUMBER_E164 = '4917659124336';
+
   const WHATSAPP_TEXT = encodeURIComponent("Hi SBA — I'd like to book a place. Which cycle has availability?");
 
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${WHATSAPP_TEXT}`;
@@ -97,7 +98,7 @@ const ContactSection: React.FC = () => {
         <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
           This is the sign-up page for SBA’s three-week cycles. Each cycle runs for{' '}
           <span className="text-white font-semibold">3 Thursdays</span>, with a maximum of{' '}
-          <span className="text-white font-semibold">10 participants</span> per cycle.
+          <span className="text-white font-semibold">6 participants</span> per cycle.
           <span className="text-white font-semibold"> Booking is handled via WhatsApp or email</span>{' '}
           for fast confirmation and a real human reply.
         </p>
@@ -191,7 +192,10 @@ const ContactSection: React.FC = () => {
             <div className="space-y-4">
               {[
                 { title: '1) Choose a cycle', desc: 'Pick one of the upcoming 3-week blocks shown on the right.' },
-                { title: '2) Message us to confirm availability', desc: 'We’ll reply quickly and confirm whether there’s space (max 10).' },
+                {
+                  title: '2) Message us to confirm availability',
+                  desc: 'We’ll reply quickly and confirm whether there’s space (max 6).'
+                },
                 { title: '3) Secure your spot', desc: 'We’ll send payment details and your onboarding instructions.' }
               ].map((step, idx) => (
                 <div key={idx} className="flex items-start space-x-4">
@@ -229,7 +233,7 @@ const ContactSection: React.FC = () => {
             </h3>
             <div className="hidden sm:flex items-center space-x-2 text-gray-400 text-xs uppercase tracking-[0.25em] font-bold">
               <Users className="w-4 h-4 text-[#b91c1c]" />
-              <span>Max 10 per cycle</span>
+              <span>Max 6 per cycle</span>
             </div>
           </div>
 
@@ -280,7 +284,6 @@ const ContactSection: React.FC = () => {
                 >
                   <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">{p.label}</p>
 
-                  {/* Value-forward headline */}
                   <p className="text-2xl font-oswald uppercase text-white mt-2">{p.priceLabel}</p>
                   <p className="text-sm text-white/90 mt-2 font-semibold">{p.headline}</p>
                   <p className="text-xs text-gray-300 mt-2 leading-relaxed">{p.subline}</p>
@@ -291,7 +294,7 @@ const ContactSection: React.FC = () => {
             </div>
 
             <p className="text-xs text-gray-500 mt-5">
-              Tip: if you’re serious about progress, booking multiple cycles upfront gives you the best rate per class.
+              Note: the single-session option is available, but the best experience comes from booking a cycle (or two cycles) so we can actually build progress.
             </p>
           </div>
         </div>
