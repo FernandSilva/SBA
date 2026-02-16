@@ -24,7 +24,7 @@ const ContactSection: React.FC = () => {
         title: 'Next Cycle',
         startLabel: 'Thu 12 Feb',
         weeks: ['Thu 12 Feb', 'Thu 19 Feb', 'Thu 26 Feb'],
-        status: 'Limited spaces available',
+        status: 'Fully booked',
         capacityText: 'Max 6 participants'
       },
       {
@@ -87,6 +87,29 @@ const ContactSection: React.FC = () => {
 
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${WHATSAPP_TEXT}`;
   const emailHref = `mailto:silvaboxingacademy@gmail.com?subject=${encodeURIComponent('SBA Booking Request')}`;
+
+  // ✅ Status color coding:
+  // - Fully booked => RED
+  // - Limited spaces => YELLOW
+  // - Taking bookings => GREEN
+  const getStatusBadgeClass = (status: string) => {
+    const s = status.toLowerCase();
+
+    if (s.includes('fully')) {
+      return 'bg-red-500/15 text-red-400 border border-red-500/25';
+    }
+
+    if (s.includes('limited')) {
+      return 'bg-yellow-500/15 text-yellow-400 border border-yellow-500/25';
+    }
+
+    if (s.includes('taking')) {
+      return 'bg-green-500/15 text-green-400 border border-green-500/25';
+    }
+
+    // fallback
+    return 'bg-gray-500/15 text-gray-300 border border-gray-500/25';
+  };
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-700 py-24 max-w-7xl mx-auto px-4 bg-[#0a0a0a]">
@@ -185,7 +208,7 @@ const ContactSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Replacement for removed form: “How booking works” */}
+          {/* How booking works */}
           <div className="mt-8 p-6 bg-[#111111] border border-[#222222] rounded-sm">
             <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#b91c1c] mb-3">How booking works</p>
 
@@ -248,7 +271,12 @@ const ContactSection: React.FC = () => {
                     <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-gray-400">{c.title}</p>
                     <p className="text-xl font-oswald uppercase text-white mt-2">{c.startLabel}</p>
                   </div>
-                  <span className="text-[10px] uppercase tracking-widest font-bold px-3 py-1 bg-[#b91c1c]/15 text-[#b91c1c] rounded-full">
+
+                  <span
+                    className={`text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full ${getStatusBadgeClass(
+                      c.status
+                    )}`}
+                  >
                     {c.status}
                   </span>
                 </div>
@@ -300,9 +328,8 @@ const ContactSection: React.FC = () => {
         </div>
       </div>
 
-      {/* FAQ (expanded purpose, no form) */}
+      {/* FAQ */}
       <div className="grid lg:grid-cols-2 gap-20">
-        {/* Left: FAQ */}
         <div>
           <h3 className="text-2xl font-oswald uppercase mb-6 text-white">Frequently Asked Questions</h3>
           <div className="space-y-4">
