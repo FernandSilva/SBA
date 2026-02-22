@@ -79,9 +79,9 @@ const ContactSection: React.FC = () => {
   );
 
   // ✅ Restored website number (as requested to keep it as-is for now)
-  const WHATSAPP_NUMBER_DISPLAY = '+49 176 5912 4336';
+  const WHATSAPP_NUMBER_DISPLAY = '+49 1520 4219 720';
   // IMPORTANT: wa.me expects digits only, no +, spaces, or parentheses
-  const WHATSAPP_NUMBER_E164 = '4917659124336';
+  const WHATSAPP_NUMBER_E164 = '4915204219720';
 
   const WHATSAPP_TEXT = encodeURIComponent("Hi SBA — I'd like to book a place. Which cycle has availability?");
 
