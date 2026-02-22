@@ -154,7 +154,15 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div className="min-w-0">
                   <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Phone / WhatsApp</p>
-                  <p className="text-white font-medium break-words">{WHATSAPP_NUMBER_DISPLAY}</p>
+                  <a
+                      href={whatsappHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-white font-medium break-words hover:text-[#b91c1c] transition-colors"
+                      aria-label="Open SBA WhatsApp chat"
+                    >
+                      SBA WhatsApp Line
+                    </a>
                 </div>
               </div>
 
