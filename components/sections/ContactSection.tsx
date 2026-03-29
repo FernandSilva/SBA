@@ -21,25 +21,25 @@ const ContactSection: React.FC = () => {
     () => [
       {
         id: 'cycle-1',
-        title: 'Next Cycle',
-        startLabel: 'Thu 12 Feb',
-        weeks: ['Thu 12 Feb', 'Thu 19 Feb', 'Thu 26 Feb', 'Thu 05 Mar'],
-        status: 'Fully booked',
+        title: 'April Cycle',
+        startLabel: 'Thu 02 Apr',
+        weeks: ['Thu 02 Apr', 'Thu 16 Apr', 'Thu 23 Apr'],
+        status: 'Taking bookings',
         capacityText: 'Max 6 participants'
       },
       {
         id: 'cycle-2',
-        title: 'Following Cycle',
-        startLabel: 'Thu 12 Mar',
-        weeks: ['Thu 12 Mar', 'Thu 19 Mar', 'Thu 26 Mar'],
-        status: 'Limited spaces available',
+        title: 'May Bookings',
+        startLabel: 'TBC',
+        weeks: ['Dates to be confirmed'],
+        status: 'Taking bookings',
         capacityText: 'Max 6 participants'
       },
       {
         id: 'cycle-3',
-        title: 'Next After That',
-        startLabel: 'Thu 02 Apr',
-        weeks: ['Thu 02 Apr', 'Thu 09 Apr', 'Thu 16 Apr'],
+        title: 'June Bookings',
+        startLabel: 'TBC',
+        weeks: ['Dates to be confirmed'],
         status: 'Taking bookings',
         capacityText: 'Max 6 participants'
       }
@@ -155,14 +155,14 @@ const ContactSection: React.FC = () => {
                 <div className="min-w-0">
                   <p className="text-[10px] uppercase tracking-widest text-[#b91c1c] font-bold">Phone / WhatsApp</p>
                   <a
-                      href={whatsappHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-white font-medium break-words hover:text-[#b91c1c] transition-colors"
-                      aria-label="Open SBA WhatsApp chat"
-                    >
-                      SBA WhatsApp Line
-                    </a>
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white font-medium break-words hover:text-[#b91c1c] transition-colors"
+                    aria-label="Open SBA WhatsApp chat"
+                  >
+                    SBA WhatsApp Line
+                  </a>
                 </div>
               </div>
 
