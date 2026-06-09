@@ -20,28 +20,21 @@ const ContactSection: React.FC = () => {
   const cycleOptions = useMemo(
     () => [
       {
-        id: 'cycle-1',
-        title: 'April Cycle',
-        startLabel: 'Thu 02 Apr',
-        weeks: ['Thu 02 Apr', 'Thu 16 Apr', 'Thu 23 Apr'],
+        id: 'booking-1',
+        title: 'Upcoming Bookings',
+        startLabel: 'Dates to be confirmed',
+        details: [
+          'We are currently taking bookings',
+          'Booking enquiries open Monday to Friday',
+          'Class dates will be confirmed directly after enquiry'
+        ],
+        schedule: [
+          'Tuesday • 18:00–19:00',
+          'Thursday • 18:00–19:00',
+          'Saturday • 10:00–11:00'
+        ],
         status: 'Taking bookings',
-        capacityText: 'Max 6 participants'
-      },
-      {
-        id: 'cycle-2',
-        title: 'May Bookings',
-        startLabel: 'TBC',
-        weeks: ['Dates to be confirmed'],
-        status: 'Taking bookings',
-        capacityText: 'Max 6 participants'
-      },
-      {
-        id: 'cycle-3',
-        title: 'June Bookings',
-        startLabel: 'TBC',
-        weeks: ['Dates to be confirmed'],
-        status: 'Taking bookings',
-        capacityText: 'Max 6 participants'
+        capacityText: 'Max 8 participants'
       }
     ],
     []
@@ -119,9 +112,10 @@ const ContactSection: React.FC = () => {
           Join <span className="text-[#b91c1c]">SBA</span>
         </h2>
         <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
-          This is the sign-up page for SBA’s three-week cycles. Each cycle runs for{' '}
-          <span className="text-white font-semibold">3 Thursdays</span>, with a maximum of{' '}
-          <span className="text-white font-semibold">6 participants</span> per cycle.
+          We are currently taking booking enquiries for upcoming SBA training blocks. Class dates are{' '}
+          <span className="text-white font-semibold">still to be confirmed</span>, but our current training format includes
+          Tuesday and Thursday evening sessions plus Saturday morning availability, with a maximum of{' '}
+          <span className="text-white font-semibold">8 participants</span> per block.
           <span className="text-white font-semibold"> Booking is handled via WhatsApp or email</span>{' '}
           for fast confirmation and a real human reply.
         </p>
@@ -211,8 +205,8 @@ const ContactSection: React.FC = () => {
 
             <div className="mt-5 text-[11px] text-gray-500 leading-relaxed">
               Tip: include your <span className="text-gray-300">name</span>,{' '}
-              <span className="text-gray-300">experience level</span>, and which{' '}
-              <span className="text-gray-300">cycle</span> you want.
+              <span className="text-gray-300">experience level</span>, and your{' '}
+              <span className="text-gray-300">preferred training time</span>.
             </div>
           </div>
 
@@ -222,10 +216,10 @@ const ContactSection: React.FC = () => {
 
             <div className="space-y-4">
               {[
-                { title: '1) Choose a cycle', desc: 'Pick one of the upcoming 3-week blocks shown on the right.' },
+                { title: '1) Choose your preferred slot', desc: 'Tell us which training time works best for you.' },
                 {
                   title: '2) Message us to confirm availability',
-                  desc: 'We’ll reply quickly and confirm whether there’s space (max 6).'
+                  desc: 'We’ll reply quickly and confirm whether there’s space (max 8).'
                 },
                 { title: '3) Secure your spot', desc: 'We’ll send payment details and your onboarding instructions.' }
               ].map((step, idx) => (
@@ -256,23 +250,23 @@ const ContactSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Cycle cards */}
+        {/* Right: Booking card */}
         <div className="lg:col-span-7">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-3xl font-oswald uppercase text-white">
-              Upcoming <span className="text-[#b91c1c]">Cycles</span>
+              Upcoming <span className="text-[#b91c1c]">Bookings</span>
             </h3>
             <div className="hidden sm:flex items-center space-x-2 text-gray-400 text-xs uppercase tracking-[0.25em] font-bold">
               <Users className="w-4 h-4 text-[#b91c1c]" />
-              <span>Max 6 per cycle</span>
+              <span>Max 8 participants</span>
             </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1">
             {cycleOptions.map((c) => (
               <div
                 key={c.id}
-                className="bg-[#111111] border border-[#222222] rounded-sm p-6 hover:border-[#b91c1c] transition-colors"
+                className="bg-[#111111] border border-[#222222] rounded-sm p-6 md:p-8 hover:border-[#b91c1c] transition-colors"
               >
                 <div className="flex items-start justify-between">
                   <div>
@@ -289,13 +283,24 @@ const ContactSection: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="mt-5 space-y-2 text-sm text-gray-300">
-                  {c.weeks.map((w) => (
-                    <div key={w} className="flex items-center space-x-2">
+                <div className="mt-6 space-y-3 text-sm text-gray-300">
+                  {c.details.map((detail) => (
+                    <div key={detail} className="flex items-center space-x-2">
                       <Calendar className="w-4 h-4 text-[#b91c1c]" />
-                      <span>{w} • 18:00–19:00</span>
+                      <span>{detail}</span>
                     </div>
                   ))}
+                </div>
+
+                <div className="mt-6 rounded-sm bg-black/30 px-4 py-4">
+                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400 mb-3">Current Training Windows</p>
+                  <div className="grid gap-2 text-sm uppercase tracking-[0.18em] text-gray-300">
+                    {c.schedule.map((slot) => (
+                      <div key={slot} className="flex items-center justify-between border-b border-white/5 pb-2 last:border-b-0 last:pb-0">
+                        <span>{slot}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="mt-6 pt-5 border-t border-white/10 text-xs text-gray-400">{c.capacityText}</div>

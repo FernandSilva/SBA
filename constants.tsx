@@ -45,7 +45,7 @@ export const VIDEOS = {
 
 
 export const CAMP_DATA = {
-  location: 'Hamburg, Germany',
+  location: 'Barcelona, Spain',
   contactEmail: 'fernand00.silva0@gmail.com',
   duration: '3 weeks',
   frequency: 'Once per week',

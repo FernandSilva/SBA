@@ -71,7 +71,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activePage, setActivePage }) => {
           <div className="hidden sm:flex items-center space-x-2">
             <MapPin className="w-3 h-3 text-[#b91c1c]" />
             <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500">
-              Hamburg, DE
+              Barcelona, Spain
             </span>
           </div>
           
@@ -113,7 +113,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activePage, setActivePage }) => {
               </button>
             </nav>
             <div className="mt-12 flex flex-col items-center pb-12">
-              <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-gray-400 mb-2">Hamburg Based Academy</span>
+              <span className="text-[10px] uppercase font-bold tracking-[0.4em] text-gray-400 mb-2">Barcelona Based Academy</span>
               <div className="w-16 h-[2px] bg-[#b91c1c]" />
             </div>
           </div>
