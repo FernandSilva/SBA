@@ -17,66 +17,51 @@ const ContactSection: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   // --- Booking model (UI only) ---
-  const cycleOptions = useMemo(
+  const bookingOptions = useMemo(
     () => [
       {
-        id: 'booking-1',
-        title: 'Upcoming Bookings',
+        id: 'group-classes',
+        title: 'Group Classes',
         startLabel: 'Dates to be confirmed',
         details: [
-          'We are currently taking bookings',
-          'Booking enquiries open Monday to Friday',
-          'Class dates will be confirmed directly after enquiry'
+          'Group-class schedule will be announced once the next intake is confirmed',
+          'Register your interest now to get priority when dates are released',
+          'Designed for structured group coaching in Barcelona'
         ],
         schedule: [
-          'Tuesday • 18:00–19:00',
-          'Thursday • 18:00–19:00',
-          'Saturday • 10:00–11:00'
+          'One-hour sessions',
+          'Timetable released on confirmation',
+          'Barcelona location shared after booking'
         ],
         status: 'Taking bookings',
         capacityText: 'Max 8 participants'
+      },
+      {
+        id: 'private-sessions',
+        title: 'Private Sessions',
+        startLabel: 'Available now',
+        details: [
+          'Private-session bookings are open immediately',
+          'Sessions can be arranged around client availability',
+          'Ideal for focused technical work, fitness, and padwork'
+        ],
+        schedule: [
+          'One-hour sessions',
+          'Booked directly by request',
+          'Flexible scheduling in Barcelona'
+        ],
+        status: 'Available now',
+        capacityText: '1-to-1 coaching'
       }
     ],
     []
   );
 
-  // ✅ UPDATED PRICING (removed 9-class option, added 1-session option)
-  const packageOptions = useMemo(
-    () => [
-      {
-        id: 'p6',
-        label: 'Recommended — 6 Classes (2 Cycles)',
-        priceLabel: '€80 total',
-        headline: 'About €13.33 per class',
-        subline: 'Best balance of value + consistency (recommended for real progress).',
-        note: 'Ideal if you want enough sessions to build rhythm, technique, and conditioning properly.'
-      },
-      {
-        id: 'p3',
-        label: 'Starter — 3 Classes (1 Cycle)',
-        priceLabel: '€50 total',
-        headline: 'About €16.67 per class',
-        subline: 'A full 3-week cycle to learn the fundamentals and get integrated with the team.',
-        note: 'Good for new members who want to try SBA with a complete cycle.'
-      },
-      {
-        id: 'p1',
-        label: 'Single Session — 1 Class (Drop-in)',
-        priceLabel: '€20 total',
-        headline: '€20 per class',
-        subline: 'Best for visitors or a one-off session. For the real SBA experience, book a cycle.',
-        note: 'We strongly recommend booking at least 3 classes so coaching can actually compound.'
-      }
-    ],
-    []
-  );
-
-  // ✅ Restored website number (as requested to keep it as-is for now)
   const WHATSAPP_NUMBER_DISPLAY = '+49 1520 4219 720';
   // IMPORTANT: wa.me expects digits only, no +, spaces, or parentheses
   const WHATSAPP_NUMBER_E164 = '4915204219720';
 
-  const WHATSAPP_TEXT = encodeURIComponent("Hi SBA — I'd like to book a place. Which cycle has availability?");
+  const WHATSAPP_TEXT = encodeURIComponent("Hi SBA — I'd like to book a session. Can you tell me about private-session availability and upcoming group classes?");
 
   const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER_E164}?text=${WHATSAPP_TEXT}`;
   const emailHref = `mailto:silvaboxingacademy@gmail.com?subject=${encodeURIComponent('SBA Booking Request')}`;
@@ -96,7 +81,7 @@ const ContactSection: React.FC = () => {
       return 'bg-yellow-500/15 text-yellow-400 border border-yellow-500/25';
     }
 
-    if (s.includes('taking')) {
+    if (s.includes('taking') || s.includes('available')) {
       return 'bg-green-500/15 text-green-400 border border-green-500/25';
     }
 
@@ -112,10 +97,10 @@ const ContactSection: React.FC = () => {
           Join <span className="text-[#b91c1c]">SBA</span>
         </h2>
         <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
-          We are currently taking booking enquiries for upcoming SBA training blocks. Class dates are{' '}
-          <span className="text-white font-semibold">still to be confirmed</span>, but our current training format includes
-          Tuesday and Thursday evening sessions plus Saturday morning availability, with a maximum of{' '}
-          <span className="text-white font-semibold">8 participants</span> per block.
+          SBA is now taking bookings in Barcelona for both{' '}
+          <span className="text-white font-semibold">private sessions</span> and{' '}
+          <span className="text-white font-semibold">upcoming group classes</span>. Private sessions can be arranged directly,
+          while the next group-class schedule will be confirmed once dates are finalised.
           <span className="text-white font-semibold"> Booking is handled via WhatsApp or email</span>{' '}
           for fast confirmation and a real human reply.
         </p>
@@ -205,8 +190,8 @@ const ContactSection: React.FC = () => {
 
             <div className="mt-5 text-[11px] text-gray-500 leading-relaxed">
               Tip: include your <span className="text-gray-300">name</span>,{' '}
-              <span className="text-gray-300">experience level</span>, and your{' '}
-              <span className="text-gray-300">preferred training time</span>.
+              <span className="text-gray-300">experience level</span>, and whether you want{' '}
+              <span className="text-gray-300">private sessions or group classes</span>.
             </div>
           </div>
 
@@ -216,10 +201,10 @@ const ContactSection: React.FC = () => {
 
             <div className="space-y-4">
               {[
-                { title: '1) Choose your preferred slot', desc: 'Tell us which training time works best for you.' },
+                { title: '1) Choose your session type', desc: 'Let us know whether you want private coaching or the next group-class intake.' },
                 {
                   title: '2) Message us to confirm availability',
-                  desc: 'We’ll reply quickly and confirm whether there’s space (max 8).'
+                  desc: 'We’ll reply quickly with private-session options or group-class updates as soon as dates are confirmed.'
                 },
                 { title: '3) Secure your spot', desc: 'We’ll send payment details and your onboarding instructions.' }
               ].map((step, idx) => (
@@ -236,7 +221,7 @@ const ContactSection: React.FC = () => {
             </div>
 
             <div className="mt-6 pt-6 border-t border-white/10 flex items-center justify-between">
-              <p className="text-xs text-gray-500">Fastest: WhatsApp. Best for structured details: Email.</p>
+              <p className="text-xs text-gray-500">Fastest: WhatsApp. Best for longer booking notes: Email.</p>
               <a
                 href={whatsappHref}
                 target="_blank"
@@ -250,7 +235,7 @@ const ContactSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Booking card */}
+        {/* Right: Booking cards */}
         <div className="lg:col-span-7">
           <div className="flex items-center justify-between mb-6">
             <h3 className="text-3xl font-oswald uppercase text-white">
@@ -258,12 +243,12 @@ const ContactSection: React.FC = () => {
             </h3>
             <div className="hidden sm:flex items-center space-x-2 text-gray-400 text-xs uppercase tracking-[0.25em] font-bold">
               <Users className="w-4 h-4 text-[#b91c1c]" />
-              <span>Max 8 participants</span>
+              <span>Barcelona-based coaching</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1">
-            {cycleOptions.map((c) => (
+          <div className="grid md:grid-cols-2 gap-6">
+            {bookingOptions.map((c) => (
               <div
                 key={c.id}
                 className="bg-[#111111] border border-[#222222] rounded-sm p-6 md:p-8 hover:border-[#b91c1c] transition-colors"
@@ -293,7 +278,7 @@ const ContactSection: React.FC = () => {
                 </div>
 
                 <div className="mt-6 rounded-sm bg-black/30 px-4 py-4">
-                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400 mb-3">Current Training Windows</p>
+                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400 mb-3">Booking Notes</p>
                   <div className="grid gap-2 text-sm uppercase tracking-[0.18em] text-gray-300">
                     {c.schedule.map((slot) => (
                       <div key={slot} className="flex items-center justify-between border-b border-white/5 pb-2 last:border-b-0 last:pb-0">
@@ -312,31 +297,19 @@ const ContactSection: React.FC = () => {
           <div className="mt-10 bg-[#111111] border border-[#222222] rounded-sm p-7">
             <div className="flex items-center justify-between mb-5">
               <h4 className="text-2xl font-oswald uppercase text-white">
-                Pricing <span className="text-[#b91c1c]">Options</span>
+                Pricing <span className="text-[#b91c1c]">Overview</span>
               </h4>
               <BadgeEuro className="w-6 h-6 text-[#b91c1c]" />
             </div>
 
-            <div className="grid md:grid-cols-3 gap-5">
-              {packageOptions.map((p) => (
-                <div
-                  key={p.id}
-                  className="border border-[#222222] rounded-sm p-5 bg-black/30 hover:border-[#b91c1c] transition-colors"
-                >
-                  <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">{p.label}</p>
-
-                  <p className="text-2xl font-oswald uppercase text-white mt-2">{p.priceLabel}</p>
-                  <p className="text-sm text-white/90 mt-2 font-semibold">{p.headline}</p>
-                  <p className="text-xs text-gray-300 mt-2 leading-relaxed">{p.subline}</p>
-
-                  <p className="text-xs text-gray-400 mt-4 leading-relaxed">{p.note}</p>
-                </div>
-              ))}
+            <div className="border border-[#222222] rounded-sm p-6 bg-black/30">
+              <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-gray-400">Simple Session Rate</p>
+              <p className="text-4xl font-oswald uppercase text-white mt-3">€10 per session</p>
+              <p className="text-sm text-white/90 mt-3 font-semibold">One clear price for both private sessions and group classes.</p>
+              <p className="text-xs text-gray-300 mt-3 leading-relaxed">
+                Group classes are released when the next schedule is confirmed. Private sessions can be arranged directly based on availability in Barcelona.
+              </p>
             </div>
-
-            <p className="text-xs text-gray-500 mt-5">
-              Note: the single-session option is available, but the best experience comes from booking a cycle (or two cycles) so we can actually build progress.
-            </p>
           </div>
         </div>
       </div>

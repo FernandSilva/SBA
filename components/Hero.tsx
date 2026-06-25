@@ -42,10 +42,10 @@ const Hero: React.FC<HeroProps> = ({ setActivePage }) => {
         <div className="space-y-4 mb-12">
           <p className="text-xl md:text-3xl font-oswald uppercase tracking-widest text-white leading-tight">
             High-Intensity Boxing Training. <br className="md:hidden" />
-            <span className="text-[#b91c1c]">Three-Week Programs.</span> Real Coaching.
+            <span className="text-[#b91c1c]">Barcelona-Based Coaching.</span> Real Progress.
           </p>
           <p className="text-sm md:text-xl font-light text-gray-300 max-w-3xl mx-auto">
-            Group-based sessions focused on padwork, conditioning, and boxing fundamentals for beginners, amateurs, and professionals.
+            Barcelona-based boxing coaching with group classes, private sessions, and focused padwork for beginners, amateurs, and professionals.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ const Hero: React.FC<HeroProps> = ({ setActivePage }) => {
           onClick={() => setActivePage('CONTACT')}
           className="w-full sm:w-auto bg-[#b91c1c] hover:bg-[#991b1b] text-white px-20 py-6 rounded-sm font-oswald uppercase font-bold tracking-[0.2em] transition-all transform hover:-translate-y-1 shadow-2xl shadow-red-900/40"
         >
-          Apply for Boxing Camp
+          Book a Session
         </button>
       </div>
 

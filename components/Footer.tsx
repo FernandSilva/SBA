@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
           </div>
           
           <p className="text-gray-500 text-[11px] leading-relaxed max-w-[280px]">
-            Hamburg's premier destination for technical boxing, elite padwork, and disciplined athletic growth.
+            Barcelona-based boxing coaching focused on technical development, elite padwork, and disciplined athletic growth.
           </p>
         </div>
 
@@ -65,7 +65,7 @@ const Footer: React.FC<FooterProps> = ({ setActivePage }) => {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 mt-20 pt-8 border-t border-[#e5e5e5] text-center text-[10px] text-gray-400 uppercase tracking-[0.5em]">
-        © {new Date().getFullYear()} Silva Boxing Academy (SBA). Hamburg, Germany.
+        © {new Date().getFullYear()} Silva Boxing Academy (SBA). Barcelona, Spain.
       </div>
     </footer>
   );

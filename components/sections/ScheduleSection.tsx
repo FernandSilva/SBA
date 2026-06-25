@@ -15,7 +15,7 @@ const ScheduleSection: React.FC = () => {
               Each SBA session is carefully structured to balance technical learning, conditioning, and recovery. The goal is not to exhaust athletes randomly, but to develop boxing skill, endurance, and confidence progressively within a one-hour format.
             </p>
             <p>
-              SBA operates as a structured group training session that takes place weekly.
+              In Barcelona, SBA currently accepts bookings for private sessions immediately, while group-class schedules are announced once each intake is confirmed.
             </p>
           </div>
 
@@ -23,15 +23,22 @@ const ScheduleSection: React.FC = () => {
             <div className="flex items-center space-x-4">
               <Calendar className="w-6 h-6 text-[#b91c1c]" />
               <div>
-                <p className="text-[10px] uppercase font-bold tracking-widest text-gray-400">Day</p>
+                <p className="text-[10px] uppercase font-bold tracking-widest text-gray-400">Group Classes</p>
                 <p className="text-xl font-oswald uppercase text-[#0a0a0a]">{CAMP_DATA.day}</p>
               </div>
             </div>
             <div className="flex items-center space-x-4">
               <Clock className="w-6 h-6 text-[#b91c1c]" />
               <div>
-                <p className="text-[10px] uppercase font-bold tracking-widest text-gray-400">Time / Duration</p>
-                <p className="text-xl font-oswald uppercase text-[#0a0a0a]">{CAMP_DATA.time} (60 min)</p>
+                <p className="text-[10px] uppercase font-bold tracking-widest text-gray-400">Private Sessions</p>
+                <p className="text-xl font-oswald uppercase text-[#0a0a0a]">{CAMP_DATA.time}</p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <Clock className="w-6 h-6 text-[#b91c1c]" />
+              <div>
+                <p className="text-[10px] uppercase font-bold tracking-widest text-gray-400">Session Length / Price</p>
+                <p className="text-xl font-oswald uppercase text-[#0a0a0a]">{CAMP_DATA.sessionLength} / {CAMP_DATA.pricing.session}</p>
               </div>
             </div>
           </div>

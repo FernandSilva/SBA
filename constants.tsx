@@ -46,17 +46,15 @@ export const VIDEOS = {
 
 export const CAMP_DATA = {
   location: 'Barcelona, Spain',
-  contactEmail: 'fernand00.silva0@gmail.com',
-  duration: '3 weeks',
-  frequency: 'Once per week',
-  day: 'Thursday',
-  time: '18:00 – 19:00',
+  contactEmail: 'silvaboxingacademy@gmail.com',
+  duration: '60 minutes',
+  frequency: 'Booking-based',
+  day: 'Group class schedule to be confirmed',
+  time: 'Private sessions available by request',
   sessionLength: '60 minutes',
-  nextCampStart: 'Thursday, 12 February',
+  nextCampStart: 'Group class schedule to be confirmed',
   pricing: {
-    beginner: '€50 total for all three sessions',
-    returningSingle: '€20 per individual session',
-    returningUpfront: '€50 for all three sessions'
+    session: '€10 per session'
   }
 };
 
@@ -105,13 +103,13 @@ export const FAQS: FAQItem[] = [
   },
   {
     question: "What if I'm not fit yet?",
-    answer: "That is exactly what camp is for. We build your conditioning progressively."
+    answer: "That is exactly what training is for. We build your conditioning progressively."
   },
 
   {
   question: "How do I apply?",
   answer:
-    "The fastest way to apply is to contact us directly via WhatsApp. You can also email, call, or send an SMS, and we’ll confirm availability, start dates, and onboarding steps."
+    "The fastest way to apply is to contact us directly via WhatsApp. We’ll confirm private-session availability immediately and update you on upcoming group-class schedules as soon as dates are released."
 }
 
 ];

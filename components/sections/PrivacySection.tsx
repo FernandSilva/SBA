@@ -34,7 +34,7 @@ const PrivacySection: React.FC = () => {
               <li>Manage bookings and participation</li>
               <li>Communicate training updates</li>
               <li>Respond to enquiries</li>
-              <li>Administer membership or camp participation</li>
+              <li>Administer membership, group classes, or private sessions</li>
             </ul>
             <p className="mt-4 font-bold text-[#b91c1c]">SBA does not sell, rent, or share personal information with third parties.</p>
           </section>

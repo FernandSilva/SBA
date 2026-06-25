@@ -25,7 +25,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activePage, setActivePage }) => {
     { label: 'Home', id: 'HOME' },
     { label: 'About Us', id: 'ABOUT' },
     { label: 'Boxing Schedule', id: 'SCHEDULE' },
-    { label: 'Boxing Camp', id: 'CAMP' },
+    { label: 'Training Options', id: 'CAMP' },
   ];
 
   const handlePageChange = (page: PageType) => {
@@ -109,7 +109,7 @@ const Dashboard: React.FC<DashboardProps> = ({ activePage, setActivePage }) => {
                 onClick={() => handlePageChange('CONTACT')}
                 className="bg-[#b91c1c] text-white px-12 py-5 font-oswald uppercase tracking-widest font-bold text-xl hover:bg-[#991b1b] transition-all transform hover:scale-105 shadow-xl shadow-red-900/10"
               >
-                Apply for Boxing Camp
+                Book a Session
               </button>
             </nav>
             <div className="mt-12 flex flex-col items-center pb-12">

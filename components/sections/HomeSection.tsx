@@ -108,8 +108,8 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               <h3 className="text-2xl font-oswald uppercase text-[#0a0a0a]">Boxing sessions Built <span className="text-[#b91c1c]">on Structure and Intensity</span>
               </h3>
               <p>
-                Silva Boxing Academy is a boxing club delivering high-intensity group training through structured three-week programs.
-                Each session is designed to build boxing skill, conditioning, and confidence through a combination of padwork, cardio,
+                Silva Boxing Academy is a Barcelona-based boxing club delivering high-intensity coaching through structured group classes
+                and private sessions. Each session is designed to build boxing skill, conditioning, and confidence through a combination of padwork, cardio,
                 strength training, and technical drills.
               </p>
               <p>
@@ -281,7 +281,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
             <h2 className="text-4xl md:text-5xl font-oswald uppercase text-[#0a0a0a] mb-4">
               Action <span className="text-[#b91c1c]">Gallery</span>
             </h2>
-            <p className="text-gray-500 max-w-md mx-auto">Real boxing. Real training. Real progress. Every Thursday in Hamburg.</p>
+            <p className="text-gray-500 max-w-md mx-auto">Real boxing. Real training. Real progress. Built for Barcelona.</p>
           </div>
 
           {/* Shared: horizontal scroll, standardized square tiles, click-to-play */}
@@ -343,7 +343,7 @@ const HomeSection: React.FC<HomeSectionProps> = ({ setActivePage }) => {
               onClick={() => setActivePage('CONTACT')}
               className="bg-[#b91c1c] hover:bg-[#991b1b] text-white px-12 py-5 font-oswald uppercase tracking-widest font-bold text-lg rounded-sm transition-all transform hover:scale-105"
             >
-              Apply for Boxing Camp
+              Book a Session
             </button>
           </div>
         </div>

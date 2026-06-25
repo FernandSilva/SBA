@@ -49,7 +49,7 @@ const AboutSection: React.FC = () => {
           </h2>
           <div className="space-y-6 text-gray-600 text-lg leading-relaxed mb-12">
             <p>
-              Fernando Silva is the founder and head coach of Silva Boxing Academy. He built SBA with a simple philosophy: boxing is a
+              Fernando Silva is the founder and head coach of Silva Boxing Academy in Barcelona. He built SBA with a simple philosophy: boxing is a
               craft, and craft demands standards. After years in the sport as a competitive boxer and student of the game, Fernando
               transitioned into coaching with a focus on fundamentals, ring IQ, and disciplined intensity.
             </p>
@@ -59,7 +59,7 @@ const AboutSection: React.FC = () => {
               still meeting beginners exactly where they are.
             </p>
             <p>
-              At SBA, Fernando leads every camp session and oversees each athlete’s development. The goal is never to “survive a workout.”
+              At SBA, Fernando leads the coaching and oversees each athlete’s development. The goal is never to “survive a workout.”
               The goal is to build real boxing: better balance, better decisions, better defence, and conditioning that holds up when pressure rises.
             </p>
             <p>
